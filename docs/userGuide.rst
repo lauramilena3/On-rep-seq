@@ -5,18 +5,13 @@ Requirements
 
 You can follow the `installation guide <https://docs.anaconda.com/anaconda/install/>`_ .
 
-
 Installation
 ============
 
-Clone github repo::
+Clone github repo and enter directory::
    
    git clone https://github.com/lauramilena3/On-rep-seq
-
-Create On-rep-seq virtual environment and activate it::
-   
-   conda env create -n On-rep-seq -f On-rep-seq.yaml
-   source activate On-rep-seq
+   cd On-rep-seq
 
 Go into On-rep-seq directory and create symbolic links to your 
 basecalled data on the data/basecalled directory::
@@ -24,6 +19,13 @@ basecalled data on the data/basecalled directory::
    cd On-rep-seq/
    fastqDir=$yourDataDir
    ln -s $fastqDir/*fastq data/basecalled 
+   
+Create On-rep-seq virtual environment and activate it::
+   
+   conda env create -n On-rep-seq -f On-rep-seq.yaml
+   source activate On-rep-seq
+
+
 
 Change ``$yourDataDir`` with the corresponding directory that holds your data.
 

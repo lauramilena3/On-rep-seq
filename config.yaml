@@ -1,5 +1,25 @@
-multiplexed: true
 basecalled_dir: "data/basecalled/"
 canu_dir: "canu/canu-1.8/Linux-amd64/bin"
-barcodes: "repBC01 repBC02 repBC03 repBC04 repBC05 repBC06 repBC07 repBC08 repBC09"
-kraken_db: "db/NCBI-bacteria-01.04.2019"
+barcodes: "repBC01 repBC106 repBC11 repBC133 repBC147 repBC160 repBC174 repBC188 
+          repBC28 repBC43 repBC58 repBC73 repBC88 repBC02 repBC107 repBC120 repBC134 
+          repBC148 repBC161 repBC175 repBC189 repBC29 repBC44 repBC59 repBC74 repBC89 
+          repBC03 repBC108 repBC121 repBC135 repBC149 repBC162 repBC176 repBC18 repBC30 
+          repBC45 repBC60 repBC75 repBC90 repBC04 repBC109 repBC122 repBC136 repBC14 
+          repBC163 repBC177 repBC190 repBC31 repBC46 repBC61 repBC76 repBC91 repBC05 
+          repBC10 repBC123 repBC137 repBC150 repBC164 repBC178 repBC191 repBC32 repBC47 
+          repBC62 repBC77 repBC92 repBC06 repBC110 repBC124 repBC138 repBC151 repBC165 
+          repBC179 repBC192 repBC33 repBC48 repBC63 repBC78 repBC93 repBC07 repBC111 
+          repBC125 repBC139 repBC152 repBC166 repBC17 repBC19 repBC34 repBC49 repBC64 
+          repBC79 repBC94 repBC08 repBC112 repBC126 repBC13 repBC153 repBC167 repBC180 
+          repBC20 repBC35 repBC50 repBC65 repBC80 repBC95 repBC09 repBC113 repBC127 
+          repBC140 repBC154 repBC168 repBC181 repBC21 repBC36 repBC51 repBC66 repBC81 
+          repBC96 repBC100 repBC114 repBC128 repBC141 repBC155 repBC169 repBC182 repBC22 
+          repBC37 repBC52 repBC67 repBC82 repBC97 repBC101 repBC115 repBC129 repBC142 
+          repBC156 repBC16 repBC183 repBC23 repBC38 repBC53 repBC68 repBC83 repBC98 
+          repBC102 repBC116 repBC12 repBC143 repBC157 repBC170 repBC184 repBC24 repBC39 
+          repBC54 repBC69 repBC84 repBC99 repBC103 repBC117 repBC130 repBC144 repBC158 
+          repBC171 repBC185 repBC25 repBC40 repBC55 repBC70 repBC85 repBC104 repBC118 
+          repBC131 repBC145 repBC159 repBC172 repBC186 repBC26 repBC41 repBC56 repBC71 
+          repBC86 repBC105 repBC119 repBC132 repBC146 repBC15 repBC173 repBC187 repBC27 
+          repBC42 repBC57 repBC72 repBC87"
+kraken_db: "db/NCBI-bacteria"

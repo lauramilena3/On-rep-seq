@@ -4,3 +4,4 @@ channels:
 dependencies:
   - snakemake-minimal =5.3.0
   - matplotlib =3.0.3
+  - kraken2 =2.0.7
