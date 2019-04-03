@@ -19,7 +19,7 @@ rule plotFlowgrams:
 		import math
 		
 		#set subplot features	
-		filelist=input
+		filelist=sorted(input, key=lambda x: int(x.partition('BC')[2].partition('.')[0]))
 		nro=math.ceil(len(filelist)/3)
 		fig, axes = plt.subplots(nrows=nro, ncols=3, figsize=(12, 20), 
 			sharex=True, sharey=True)
