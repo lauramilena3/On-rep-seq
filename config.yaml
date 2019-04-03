@@ -1,0 +1,4 @@
+multiplexed: true
+basecalled_dir: "data/basecalled/"
+barcodes: "repBC01 repBC02 repBC03 repBC04 repBC05 repBC06 repBC07 repBC08 repBC09"
+kraken_db: "db/NCBI-bacteria-01.04.2019"

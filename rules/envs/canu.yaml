@@ -1,0 +1,6 @@
+channels:
+  - bioconda
+  - biobuilds
+  - conda-forge
+dependencies:
+  - java-jdk =8.0.112

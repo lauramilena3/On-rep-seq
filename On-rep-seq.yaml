@@ -1,0 +1,9 @@
+channels:
+  - bioconda
+  - biobuilds
+  - conda-forge
+dependencies:
+  - snakemake-minimal =5.3.0
+  - matplotlib =3.0.3
+#  - pip
+#    - git+https://github.com/marbl/canu.git

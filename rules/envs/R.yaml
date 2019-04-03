@@ -1,0 +1,6 @@
+channels:
+  - conda-forge
+dependencies:
+  - r-optparse =1.6.1
+  - r-ggplot2 =3.1.0
+  - r-signal =0.7
