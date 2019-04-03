@@ -1,9 +1,7 @@
 channels:
   - bioconda
-  - biobuilds
   - conda-forge
 dependencies:
-  - matplotlib =3.0.3
   - perl =5.26.2
   - kraken2 =2.0.7
   - vsearch =2.11.1

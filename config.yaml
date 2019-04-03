@@ -1,4 +1,5 @@
 multiplexed: true
 basecalled_dir: "data/basecalled/"
+canu_dir: "canu/canu-1.8/Linux-amd64/bin"
 barcodes: "repBC01 repBC02 repBC03 repBC04 repBC05 repBC06 repBC07 repBC08 repBC09"
 kraken_db: "db/NCBI-bacteria-01.04.2019"

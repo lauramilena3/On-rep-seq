@@ -1,6 +1,6 @@
 channels:
   - bioconda
-  - conda-forge 
+  - conda-forge
 dependencies:
   - snakemake-minimal =5.3.0
   - matplotlib =3.0.3
