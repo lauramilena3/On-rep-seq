@@ -1,13 +1,13 @@
-Requirements:
-=============
+Requirements
+============
 
 - Anaconda
 
 You can follow the `installation guide <https://docs.anaconda.com/anaconda/install/>`_ .
 
 
-Installation:
-=============
+Installation
+============
 
 Clone github repo::
    
@@ -27,11 +27,11 @@ basecalled data on the data/basecalled directory::
 
 Change ``$yourDataDir`` with the corresponding directory that holds your data.
 
-Running:
-========
+Running
+=======
 
-Note to Os users: Canu 
-----------------------
+Note to Os users (Canu) 
+-----------------------
 If you are using os then you need to edit the config file to set a new directory for canu::
    
    sed -i'.bak' -e 's/Linux-amd64/Darwin-amd64/g' config.yaml
@@ -43,10 +43,10 @@ Download kraken database, notice this step can take up to 48 hours::
    
    kraken2-build --download-taxonomy --db db/NCBI-bacteria 
    kraken2-build --download-library bacteria --db db/NCBI-bacteria
-   kraken2-build --build --db $DBNAME
+   kraken2-build --build --db db/NCBI-bacteria
 
-Running On-rep-seq:
--------------------
+Running On-rep-seq
+------------------
 
 View the number of avaliable cores with::
    
@@ -58,7 +58,6 @@ Run the snakemake pipeline with the desired number of cores::
 
 If you are using your laptop we recommend to leave 2 free processors
 for other tasks. 
-
 
 View dag of jobs to visualize the workflow 
 ++++++++++++++++++++++++++++++++++++++++++
