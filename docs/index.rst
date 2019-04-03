@@ -6,10 +6,13 @@
 Welcome to On-rep-seq's documentation!
 ======================================
 
-.. toctree::
-   :maxdepth: 2
-   :caption: Contents:
 
+.. toctree::
+   :caption: Getting started
+   :hidden:
+   :maxdepth: 1
+
+   userGuide
 
 
 Indices and tables
