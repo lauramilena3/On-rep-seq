@@ -418,3 +418,5 @@ heatmap3<-function (x, Rowv = NULL, Colv = if (symm) "Rowv" else NULL,
     invisible(list(rowInd = rowInd, colInd = colInd, Rowv = if (keep.dendro && 
         doRdend) ddr, Colv = if (keep.dendro && doCdend) ddc, 
         cutTable = if (!missing(ColSideAnn) && !missing(ColSideCut)) cutTable))
+}
+
