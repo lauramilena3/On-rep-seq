@@ -1,4 +1,4 @@
-!/bin/bash
+#!/bin/bash
 ## Maciek Sykulski <macieksk@gmail.com>, 2019
 set -eu
 
