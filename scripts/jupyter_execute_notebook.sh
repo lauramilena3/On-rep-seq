@@ -13,6 +13,7 @@ extension="${IPYNBOUT##*.}"
 OUTTYPE="$extension"
 #OUTTYPE="ipynb"
 #OUTTYPE="html"
+if [ "$OUTTYPE" = "ipynb" ]; then OUTTYPE="notebook"; fi
 
 #SINK="$1"; shift 1
 #exec 3> >(unbuffer -p tee testsink.log >&2)
