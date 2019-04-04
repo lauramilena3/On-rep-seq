@@ -58,3 +58,19 @@ rule peakPicker:
 		Rscript --vanilla scripts/peakpicker.R -f {input} -o {output} -v TRUE
 		touch {output}
 		"""
+rule LCPsCluster:
+	input:
+		directory("data/LCPs/")
+	output:
+		"data/LCPs/runnable_jupyter_on-rep-seq_flowgrams_clustering_heatmaps.html"	
+	params:
+		"runnable_jupyter_on-rep-seq_flowgrams_clustering_heatmaps.html"
+	conda:
+		"envs/R.yaml"
+	shell:
+		"""
+		./scripts/LCpCluster.R {input} {params}
+		mv {params} {output}
+		"""
+
+

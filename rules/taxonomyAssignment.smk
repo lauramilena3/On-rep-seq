@@ -11,7 +11,7 @@ rule taxonomyAssignment:
 		"""
 		cat {input} | while read line
 		do
-			kraken2 --db {config[kraken_db]} --threads {threads} $line.fa --use-names > taxonomy_$line.txt
+			kraken2 --db {config[kraken_db]} $line.fa --use-names > taxonomy_$line.txt
 			echo "taxonomy_$line" >> {output}
 		done
 		"""
