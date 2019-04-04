@@ -20,7 +20,8 @@ BARCODES = config["barcodes"].split()
 rule all:
     input:
         "data/LCPs/LCPs.pdf",
-        expand("data/peaks/vsearch_fixed_{barcode}.txt", barcode=BARCODES)
+        "runnable_jupyter_on-rep-seq_flowgrams_clustering_heatmaps.html",
+        expand("data/peaks/taxonomyFiles_{barcode}.txt", barcode=BARCODES)
 
 include: os.path.join(RULES_DIR, 'demultiplex.smk')
 include: os.path.join(RULES_DIR, 'LCPs.smk')
