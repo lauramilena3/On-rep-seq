@@ -4,7 +4,7 @@ set -eu
 
 JUPLOGLVL="DEBUG"
 JUPLOGLVL="INFO"
-TIMEOUT=60 ## Cell execution timeout
+TIMEOUT=30 ## Cell execution timeout
 
 set -x
 IPYNB="$1"; IPYNBOUT="$2"; shift 2
