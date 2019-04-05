@@ -8,4 +8,3 @@ dependencies:
   - r-signal =0.7
   - gnu-parallel =20161122
   - r-irkernel =0.8.14
-  - java-jdk =8.0.112
