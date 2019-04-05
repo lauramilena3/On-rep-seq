@@ -21,7 +21,7 @@ rule plotFlowgrams:
 		#set subplot features	
 		filelist=sorted(input, key=lambda x: int(x.split('BC')[1].split(".")[0]))
 		nro=math.ceil(len(filelist)/3)
-		fig, axes = plt.subplots(nrows=nro, ncols=3, figsize=(12, 20), 
+		fig, axes = plt.subplots(nrows=nro, ncols=3, figsize=(12, 50), 
 			sharex=True, sharey=True)
 		plt.xlim(0,3500)
 
