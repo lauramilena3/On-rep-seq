@@ -5,8 +5,6 @@ rule taxonomyAssignment:
 		"data/peaks/taxonomyFiles_{barcode}.txt"	
 	params:
 		"data/peaks"
-	conda:
-		"envs/On-rep-seq.yaml"
 	shell:
 		"""
 		cat {input} | while read line

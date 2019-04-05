@@ -1,7 +1,16 @@
+name: On-rep-seq
 channels:
   - bioconda
   - conda-forge
+  - biobuilds
 dependencies:
   - snakemake-minimal =5.3.0
   - matplotlib =3.0.3
   - kraken2 =2.0.7
+#  - perl =5.26.2
+  - java-jdk =8.0.112
+  - kraken2 =2.0.7
+  - vsearch =2.11.1
+  - cutadapt =2.1
+  - pip:
+    - git+https://github.com/macieksk/Porechop
