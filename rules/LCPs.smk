@@ -7,7 +7,7 @@ rule getLCPs:
 		"""
 		cat {input} | awk '{{if(NR%4==2) print length($1)+0}}' | sort -n | uniq -c | sed "s/   //g" |  sed "s/  //g" | sed "s/^ *// " > {output}
 		"""
-rule plotFlowgrams:
+rule plotLCPs:
 	input:
 		expand("data/LCPs/{barcode}.txt", barcode=BARCODES)
 	output:

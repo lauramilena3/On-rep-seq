@@ -2,7 +2,7 @@ rule cutAdapt:
 	input:
 		"data/peaks/peaks-{barcode}.txt"
 	output:
-		"data/peaks/input-peaks-{barcode}.txt"
+		temp("data/peaks/input-peaks-{barcode}.txt")
 	conda:
 		"envs/On-rep-seq.yaml"
 	shell:
@@ -23,7 +23,7 @@ rule correctReads:
 	input:
 		"data/peaks/input-peaks-{barcode}.txt"
 	output:
-		"data/peaks/fixed_{barcode}.txt"	
+		temp("data/peaks/fixed_{barcode}.txt")
 	params:
 		"data/peaks"
 	conda:
@@ -47,7 +47,7 @@ rule vSearch:
 	input:
 		"data/peaks/fixed_{barcode}.txt"	
 	output:
-		"data/peaks/vsearch_fixed_{barcode}.txt"	
+		temp("data/peaks/vsearch_fixed_{barcode}.txt")
 	params:
 		"data/peaks"
 	conda:
