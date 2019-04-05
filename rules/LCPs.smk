@@ -70,6 +70,7 @@ rule LCPsCluster:
 		"envs/R.yaml"
 	shell:
 		"""
+		Rscript -e "IRkernel::installspec()"
 		./scripts/LCpCluster.R {input} {params}
 		mv {params} {output}
 		"""
