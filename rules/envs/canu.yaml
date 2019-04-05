@@ -1,3 +1,4 @@
+name: canu
 channels:
   - bioconda
   - biobuilds
