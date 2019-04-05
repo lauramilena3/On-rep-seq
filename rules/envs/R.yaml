@@ -1,11 +1,11 @@
-name: R_env
 channels:
   - au-eoed
   - conda-forge
 dependencies:
+  - gnu-parallel =20161122
   - r-optparse =1.6.0
   - r-ggplot2 =3.1.0
   - r-signal =0.7
-  - gnu-parallel =20161122
   - r-irkernel =0.8.14
   - r-gplots =3.0.1
+  - r-cluster =2.0.7
