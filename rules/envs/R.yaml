@@ -9,3 +9,9 @@ dependencies:
   - r-irkernel =0.8.14
   - r-gplots =3.0.1
   - r-cluster =2.0.7
+  - r-heatmap3 =1.1.1
+  - r-hash =2.2.6
+  - r-fastmatch =1.1
+  - r-latticeExtra =0.6
+  - r-reshape =1.4.3
+  - r-matrixStats =0.54.0
