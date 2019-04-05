@@ -4,12 +4,16 @@ rule taxonomyAssignment:
 	output:
 		temp("data/peaks/taxonomyFiles_{barcode}.txt")
 	params:
-		"data/taxonomy_assignments"
+		"data/peaks"
 	shell:
 		"""
 		cat {input} | while read line
 		do
-			kraken2 --db {config[kraken_db]} $line.fa --use-names > {params}/taxonomy_$line.txt
-			echo "taxonomy_$line" >> {output}
+			if [ -s $line.fa ];
+        	then
+				kraken2 --db {config[kraken_db]} $line.fa --use-names > {params}/taxonomy_$line.txt
+				echo "taxonomy_$line" >> {output}
+        	else
+        		touch {output}
 		done
 		"""
