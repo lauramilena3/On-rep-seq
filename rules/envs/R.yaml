@@ -1,4 +1,4 @@
-name: env2
+name: R_env
 channels:
   - au-eoed
   - conda-forge
