@@ -13,5 +13,5 @@ dependencies:
   - r-hash =2.2.6
   - r-fastmatch =1.1
   - r-latticeExtra =0.6
-  - r-reshape =1.4.3
+  - r-reshape =0.8.8
   - r-matrixStats =0.54.0
