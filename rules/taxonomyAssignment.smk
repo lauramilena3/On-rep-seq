@@ -2,7 +2,7 @@ rule taxonomyAssignment:
 	input:
 		"data/peaks/vsearch_fixed_{barcode}.txt"	
 	output:
-		temp("data/taxonomyFiles_{barcode}.txt")
+		temp("data/peaks/taxonomyFiles_{barcode}.txt")
 	params:
 		"data/taxonomy_assignments"
 	shell:
