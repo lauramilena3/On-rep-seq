@@ -27,7 +27,7 @@ rule correctReads:
 	params:
 		"data/peaks"
 	conda:
-		"envs/canu.yaml"
+		"envs/R.yaml"
 	shell:
 		"""
 		cat {input} | while read line

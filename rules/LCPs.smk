@@ -62,7 +62,7 @@ rule LCPsCluster:
 	input:
 		directory("data/LCPs/")
 	output:
-		"data/LCPs/runnable_jupyter_on-rep-seq_flowgrams_clustering_heatmaps.html"	
+		"data/LCPs/LCP_clustering_heatmaps.html"	
 	params:
 		"runnable_jupyter_on-rep-seq_flowgrams_clustering_heatmaps.html"
 	conda:
