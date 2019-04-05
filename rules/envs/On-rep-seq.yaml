@@ -3,7 +3,6 @@ channels:
   - conda-forge
 dependencies:
   - perl =5.26.2
-  - kraken2 =2.0.7
   - vsearch =2.11.1
   - cutadapt =2.1
   - pip:

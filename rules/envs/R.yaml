@@ -1,4 +1,4 @@
-name: R_env
+name: env2
 channels:
   - au-eoed
   - conda-forge
@@ -8,3 +8,4 @@ dependencies:
   - r-signal =0.7
   - gnu-parallel =20161122
   - r-irkernel =0.8.14
+  - java-jdk =8.0.112
