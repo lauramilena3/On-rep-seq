@@ -13,19 +13,16 @@ Clone github repo and enter directory::
    git clone https://github.com/lauramilena3/On-rep-seq
    cd On-rep-seq
 
-Go into On-rep-seq directory and create symbolic links to your 
-basecalled data on the data/basecalled directory::
-   
-   cd On-rep-seq/
-   fastqDir=$yourDataDir
-   ln -s $fastqDir/*fastq data/basecalled 
-   
 Create On-rep-seq virtual environment and activate it::
    
    conda env create -n On-rep-seq -f On-rep-seq.yaml
    source activate On-rep-seq
 
-
+Go into On-rep-seq directory and create symbolic links to your 
+basecalled data on the data/basecalled directory::
+   
+   fastqDir=$yourDataDir
+   ln -s $fastqDir/*fastq data/basecalled 
 
 Change ``$yourDataDir`` with the corresponding directory that holds your data.
 
@@ -43,9 +40,9 @@ Download kraken database
 
 Download kraken database, notice this step can take up to 48 hours::
    
-   kraken2-build --download-taxonomy --db db/NCBI-bacteria 
-   kraken2-build --download-library bacteria --db db/NCBI-bacteria
-   kraken2-build --build --db db/NCBI-bacteria
+   kraken2-build --download-taxonomy --db db/NCBI-bacteria #4h
+   kraken2-build --download-library bacteria --db db/NCBI-bacteria #33h
+   kraken2-build --build --db db/NCBI-bacteria #4h
 
 Running On-rep-seq
 ------------------
@@ -56,10 +53,10 @@ View the number of avaliable cores with::
 
 Run the snakemake pipeline with the desired number of cores::
    
-   snakemake -j nCores
+   snakemake -j nCores --use-conda
 
-If you are using your laptop we recommend to leave 2 free processors
-for other tasks. 
+If you are using your laptop we suggest you to leave 2 free processors
+for other system tasks. 
 
 View dag of jobs to visualize the workflow 
 ++++++++++++++++++++++++++++++++++++++++++
