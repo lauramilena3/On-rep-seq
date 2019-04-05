@@ -10,10 +10,11 @@ rule taxonomyAssignment:
 		cat {input} | while read line
 		do
 			if [ -s $line.fa ];
-        	then
+			then
 				kraken2 --db {config[kraken_db]} $line.fa --use-names > {params}/taxonomy_$line.txt
 				echo "taxonomy_$line" >> {output}
-        	else
-        		touch {output}
+			else
+				touch {output}
+			fi
 		done
 		"""
