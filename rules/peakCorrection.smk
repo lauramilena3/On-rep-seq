@@ -17,8 +17,8 @@ rule cutAdapt:
 			if [ $P2 > 300 ]
 			then
 				name=$(echo $line | cut -d',' -f 3)
-				cutadapt -m $P1 {params.porechopped}/{wildcards.barcode}.fastq -o {params.peaks)/{wildcards.barcode}_short_$name.fastq 
-				cutadapt -M $P2 {params.peaks)/{wildcards.barcode}_short_$name.fastq -o data/peaks/{wildcards.barcode}_$name.fastq
+				cutadapt -m $P1 {params.porechopped}/{wildcards.barcode}.fastq -o {params.peaks}/{wildcards.barcode}_short_$name.fastq 
+				cutadapt -M $P2 {params.peaks}/{wildcards.barcode}_short_$name.fastq -o data/peaks/{wildcards.barcode}_$name.fastq
 				echo "{wildcards.barcode}_$name" >> {output}
 				rm data/peaks/{wildcards.barcode}_short_$name.fastq
 			fi
