@@ -6,7 +6,7 @@ rule cutAdapt:
 	conda:
 		"envs/On-rep-seq.yaml"
 	params:
-		porechopped="data/01_porechopped_data"
+		porechopped="data/01_porechopped_data",
 		peaks="data/03_LCPs_peaks"
 	shell:
 		"""
@@ -55,7 +55,7 @@ rule vSearch:
 	output:
 		temp("data/03_LCPs_peaks/00_peak_consensus/vsearch_fixed_{barcode}.txt")
 	params:
-		LCPs="data/03_LCPs_peaks"
+		LCPs="data/03_LCPs_peaks",
 		consensus="data/03_LCPs_peaks/00_peak_consensus"
 	conda:
 		"envs/On-rep-seq.yaml"
