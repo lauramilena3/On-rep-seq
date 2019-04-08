@@ -70,6 +70,6 @@ rule vSearch:
 			vsearch --sortbylength {params.LCPs}/$line.fastq --output {params.LCPs}/sorted_$line.fasta
 			vsearch --cluster_fast {params.LCPs}/sorted_$line.fasta -id 0.9  --consout {params.LCPs}/consensus_$line.fasta -strand both -minsl 0.80 -sizeout -minuniquesize $min
 			vsearch --sortbysize {params.LCPs}/consensus_$line.fasta --output {params.consensus}/$line.fasta --minsize 50
-			rm {params.LCPs}/sorted_$line.fa {params.LCPs}/consensus_$line.fasta {params.LCPs}/$line.fastq
+			rm {params.LCPs}/sorted_$line.fasta {params.LCPs}/consensus_$line.fasta {params.LCPs}/$line.fastq
 		done
 		"""
