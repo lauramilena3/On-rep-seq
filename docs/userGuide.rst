@@ -21,10 +21,8 @@ Create On-rep-seq virtual environment and activate it::
 Go into On-rep-seq directory and create symbolic links to your 
 basecalled data on the data/basecalled directory::
    
-   fastqDir=$yourDataDir
-   ln -s $fastqDir/*fastq data/basecalled 
-
-Change ``$yourDataDir`` with the corresponding directory that holds your data.
+   fastqDir=$("path/to/your/basecalled/data")
+   ln -s $fastqDir/*fastq data/00_basecalled_data 
 
 Running
 =======
@@ -64,6 +62,14 @@ View dag of jobs to visualize the workflow
 To view the dag run::
 
    snakemake --dag | dot -Tpdf > dag.pdf
+
+Results 
+=======
+
+All results are stored in the data folder
+
+``01_porechopped_data``
+
 
 
 
