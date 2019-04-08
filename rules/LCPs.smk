@@ -47,7 +47,7 @@ rule plotLCPs:
 					
 					i += 1
 		#save figure to pdf				
-		fig.savefig({output}, bbox_inches='tight')
+		fig.savefig("data/02_LCPs/LCP_plots.pdf", bbox_inches='tight')
 
 rule peakPicker:
 	input:
