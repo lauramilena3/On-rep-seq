@@ -4,7 +4,7 @@ rule taxonomyAssignment:
 	output:
 		temp("data/03_LCPs_peaks/taxonomyFiles_{barcode}.txt")
 	params:
-		consensus="data/03_LCPs_peaks/00_peak_consensus"
+		consensus="data/03_LCPs_peaks/00_peak_consensus",
 		taxonomy="data/03_LCPs_peaks/01_taxonomic_assignments"
 	shell:
 		"""
