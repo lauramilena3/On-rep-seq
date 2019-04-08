@@ -19,6 +19,5 @@ rule taxonomyAssignment:
 			else
 				touch {output}
 			fi
-			rm {params.consensus}/$line.fasta
 		done
 		"""

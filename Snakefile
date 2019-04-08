@@ -21,7 +21,6 @@ rule all:
         "data/02_LCPs/LCP_plots.pdf",
         "data/02_LCPs/LCP_clustering_heatmaps.html",
         expand("data/03_LCPs_peaks/taxonomyFiles_{barcode}.txt", barcode=BARCODES)
-       # expand("data/03_LCPs_peaks/input-peaks-{barcode}.txt", barcode=BARCODES)
 
 include: os.path.join(RULES_DIR, 'demultiplex.smk')
 include: os.path.join(RULES_DIR, 'LCPs.smk')

@@ -1,25 +1,22 @@
-basecalled_dir: "data/basecalled/"
+basecalled_dir: "data/00_basecalled_data"
 canu_dir: "canu/canu-1.8/Linux-amd64/bin"
-barcodes: "repBC01 repBC106 repBC11 repBC133 repBC147 repBC160 repBC174 repBC188 
-          repBC28 repBC43 repBC58 repBC73 repBC88 repBC02 repBC107 repBC120 repBC134 
-          repBC148 repBC161 repBC175 repBC189 repBC29 repBC44 repBC59 repBC74 repBC89 
-          repBC03 repBC108 repBC121 repBC135 repBC149 repBC162 repBC176 repBC18 repBC30 
-          repBC45 repBC60 repBC75 repBC90 repBC04 repBC109 repBC122 repBC136 repBC14 
-          repBC163 repBC177 repBC190 repBC31 repBC46 repBC61 repBC76 repBC91 repBC05 
-          repBC10 repBC123 repBC137 repBC150 repBC164 repBC178 repBC191 repBC32 repBC47 
-          repBC62 repBC77 repBC92 repBC06 repBC110 repBC124 repBC138 repBC151 repBC165 
-          repBC179 repBC192 repBC33 repBC48 repBC63 repBC78 repBC93 repBC07 repBC111 
-          repBC125 repBC139 repBC152 repBC166 repBC17 repBC19 repBC34 repBC49 repBC64 
-          repBC79 repBC94 repBC08 repBC112 repBC126 repBC13 repBC153 repBC167 repBC180 
-          repBC20 repBC35 repBC50 repBC65 repBC80 repBC95 repBC09 repBC113 repBC127 
-          repBC140 repBC154 repBC168 repBC181 repBC21 repBC36 repBC51 repBC66 repBC81 
-          repBC96 repBC100 repBC114 repBC128 repBC141 repBC155 repBC169 repBC182 repBC22 
-          repBC37 repBC52 repBC67 repBC82 repBC97 repBC101 repBC115 repBC129 repBC142 
-          repBC156 repBC16 repBC183 repBC23 repBC38 repBC53 repBC68 repBC83 repBC98 
-          repBC102 repBC116 repBC12 repBC143 repBC157 repBC170 repBC184 repBC24 repBC39 
-          repBC54 repBC69 repBC84 repBC99 repBC103 repBC117 repBC130 repBC144 repBC158 
-          repBC171 repBC185 repBC25 repBC40 repBC55 repBC70 repBC85 repBC104 repBC118 
-          repBC131 repBC145 repBC159 repBC172 repBC186 repBC26 repBC41 repBC56 repBC71 
-          repBC86 repBC105 repBC119 repBC132 repBC146 repBC15 repBC173 repBC187 repBC27 
-          repBC42 repBC57 repBC72 repBC87"
+barcodes: "repBC01 repBC02 repBC03 repBC04 repBC05 repBC06 repBC07 repBC08 repBC09 repBC10 
+          repBC100 repBC101 repBC102 repBC103 repBC104 repBC105 repBC106 repBC107 repBC108 repBC109 
+          repBC11 repBC110 repBC111 repBC112 repBC113 repBC114 repBC115 repBC116 repBC117 repBC118 
+          repBC119 repBC12 repBC120 repBC121 repBC122 repBC123 repBC124 repBC125 repBC126 repBC127 
+          repBC128 repBC129 repBC13 repBC130 repBC131 repBC132 repBC133 repBC134 repBC135 repBC136 
+          repBC137 repBC138 repBC139 repBC14 repBC140 repBC141 repBC142 repBC143 repBC144 repBC145 
+          repBC146 repBC147 repBC148 repBC149 repBC15 repBC150 repBC151 repBC152 repBC153 repBC154 
+          repBC155 repBC156 repBC157 repBC158 repBC159 repBC16 repBC160 repBC161 repBC162 repBC163 
+          repBC164 repBC165 repBC166 repBC167 repBC168 repBC169 repBC17 repBC170 repBC171 repBC172 
+          repBC173 repBC174 repBC175 repBC176 repBC177 repBC178 repBC179 repBC18 repBC180 repBC181 
+          repBC182 repBC183 repBC184 repBC185 repBC186 repBC187 repBC188 repBC189 repBC19 repBC190 
+          repBC191 repBC192 repBC20 repBC21 repBC22 repBC23 repBC24 repBC25 repBC26 repBC27 repBC28 
+          repBC29 repBC30 repBC31 repBC32 repBC33 repBC34 repBC35 repBC36 repBC37 repBC38 repBC39 
+          repBC40 repBC41 repBC42 repBC43 repBC44 repBC45 repBC46 repBC47 repBC48 repBC49 repBC50 
+          repBC51 repBC52 repBC53 repBC54 repBC55 repBC56 repBC57 repBC58 repBC59 repBC60 repBC61 
+          repBC62 repBC63 repBC64 repBC65 repBC66 repBC67 repBC68 repBC69 repBC70 repBC71 repBC72 
+          repBC73 repBC74 repBC75 repBC76 repBC77 repBC78 repBC79 repBC80 repBC81 repBC82 repBC83 
+          repBC84 repBC85 repBC86 repBC87 repBC88 repBC89 repBC90 repBC91 repBC92 repBC93 repBC94 
+          repBC95 repBC96 repBC97 repBC98 repBC99"
 kraken_db: "db/NCBI-bacteria"
