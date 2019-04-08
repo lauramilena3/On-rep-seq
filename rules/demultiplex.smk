@@ -2,9 +2,9 @@ rule demultiplexing_1:
     input:
         BASECALLED_DIR
     output:
-        expand("data/01_porechopped_data/{barcode}_01.fastq", barcode=BARCODES)
+        temp(expand("data/01_porechopped_data/{barcode}_01.fastq", barcode=BARCODES))
     params:
-        output_dir="data/01_porechopped_data/"
+        output_dir="data/01_porechopped_data"
     conda:
         "envs/On-rep-seq.yaml"
     threads: 16
@@ -32,4 +32,5 @@ rule demultiplexing_2:
         else
             touch {output}
         fi
+
         """
