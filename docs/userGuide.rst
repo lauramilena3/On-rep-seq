@@ -21,7 +21,7 @@ Create On-rep-seq virtual environment and activate it::
 Go into On-rep-seq directory and create symbolic links to your 
 basecalled data on the data/basecalled directory::
    
-   fastqDir="path/to/your/basecalled/data"
+   fastqDir="/path/to/your/basecalled/data"
    mkdir -p data/00_basecalled_data
    ln -s $fastqDir/*fastq data/00_basecalled_data 
 
