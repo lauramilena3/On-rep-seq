@@ -66,7 +66,7 @@ rule vSearch:
 		do
 			count=$(grep -c ">" {params.LCPs}/$line.fastq )
 			min=$(echo "scale=0 ; $count / 5" | bc )
-			echo "$line.fa" >> {output}
+			echo "$line" >> {output}
 			vsearch --sortbylength {params.LCPs}/$line.fastq --output {params.LCPs}/sorted_$line.fasta
 			vsearch --cluster_fast {params.LCPs}/sorted_$line.fasta -id 0.9  --consout {params.LCPs}/consensus_$line.fasta -strand both -minsl 0.80 -sizeout -minuniquesize $min
 			vsearch --sortbysize {params.LCPs}/consensus_$line.fasta --output {params.consensus}/$line.fasta --minsize 50
