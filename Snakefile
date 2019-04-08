@@ -12,16 +12,15 @@ configfile: "config.yaml"
 RULES_DIR = 'rules'
 BASECALLED_DIR = config["basecalled_dir"]
 BARCODES = config["barcodes"].split()
-
 #======================================================
 # Rules
 #======================================================
  
 rule all:
     input:
-        "data/LCPs/LCPs.pdf",
+        "data/02_LCPs/LCP_plot.pdf",
         "data/LCPs/LCP_clustering_heatmaps.html",
-        #expand("data/peaks/taxonomyFiles_{barcode}.txt", barcode=BARCODES)
+        expand("data/peaks/taxonomyFiles_{barcode}.txt", barcode=BARCODES)
 
 include: os.path.join(RULES_DIR, 'demultiplex.smk')
 include: os.path.join(RULES_DIR, 'LCPs.smk')
