@@ -53,7 +53,7 @@ rule peakPicker:
 	input:
 		"data/02_LCPs/{barcode}.txt"
 	output:
-		"data/03_LCPs_peaks/peaks-{barcode}.txt"
+		"data/03_LCPs_peaks/peaks_{barcode}.txt"
 	conda:
 		"envs/R.yaml"
 	shell:
