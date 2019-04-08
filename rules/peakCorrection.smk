@@ -64,7 +64,7 @@ rule vSearch:
 		"""
 		cat {input} | while read line
 		do
-			count=$(grep -c ">" {params.LCPs}/$line.fa )
+			count=$(grep -c ">" {params.LCPs}/$line.fastq )
 			min=$(echo "scale=0 ; $count / 5" | bc )
 			echo "$line.fa" >> {output}
 			vsearch --sortbylength {params.LCPs}/$line.fastq --output {params.LCPs}/sorted_$line.fasta
