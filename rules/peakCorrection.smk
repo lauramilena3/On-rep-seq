@@ -22,10 +22,8 @@ rule cutAdapt:
 				echo "{wildcards.barcode}_$name" >> {output}
 				rm data/peaks/{wildcards.barcode}_short_$name.fastq
 			fi
-
 		done	
 		"""
-
 rule correctReads:
 	input:
 		"data/03_LCPs_peaks/input-peaks-{barcode}.txt"
