@@ -15,8 +15,8 @@ rule taxonomyAssignment:
 				kraken2 --db {config[kraken_db]} {params.consensus}/$line.fa --use-names > {params.taxonomy}/taxonomy_$line.txt
 				echo "taxonomy_$line" >> {output}
 			else
-				rm {params.consensus}/$line.fa
 				touch {output}
 			fi
+			rm {params.consensus}/$line.fa
 		done
 		"""
