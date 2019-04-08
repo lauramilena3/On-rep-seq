@@ -41,12 +41,13 @@ rule correctReads:
 			./{config[canu_dir]}/canu -correct -p peak -d {params}/fixed_$line genomeSize=5k -nanopore-raw {params}/$line.fastq minReadLength=300 correctedErrorRate=0.01 corOutCoverage=5000 corMinCoverage=2 minOverlapLength=300 cnsErrorRate=0.1 cnsMaxCoverage=5000 useGrid=false || true
 			if [ -s {params}/fixed_$line/peak.correctedReads.fasta.gz ];
         	then
-        		gunzip -c {params}/fixed_$line/peak.correctedReads.fasta.gz > {params}/fixed_$line.fa
+        		gunzip -c {params}/fixed_$line/peak.correctedReads.fasta.gz > {params}/fixed_$line.fastq
         		echo "fixed_$line" >> {output}
         	else
             	touch {output}
         	fi
-        rm -rf {params}/fixed_$line
+        	rm -rf {params}/fixed_$line
+        	rm {params}/$line.fastq
 		done
 		"""
 rule vSearch:
@@ -66,9 +67,9 @@ rule vSearch:
 			count=$(grep -c ">" {params.LCPs}/$line.fa )
 			min=$(echo "scale=0 ; $count / 5" | bc )
 			echo "$line.fa" >> {output}
-			vsearch --sortbylength {params.LCPs}/$line.fa --output {params.LCPs}/sorted_$line.fasta
+			vsearch --sortbylength {params.LCPs}/$line.fastq --output {params.LCPs}/sorted_$line.fasta
 			vsearch --cluster_fast {params.LCPs}/sorted_$line.fasta -id 0.9  --consout {params.LCPs}/consensus_$line.fasta -strand both -minsl 0.80 -sizeout -minuniquesize $min
-			vsearch --sortbysize {params.LCPs}/consensus_$line.fasta --output {params.consensus}/$line.fa --minsize 50
-			rm {params.LCPs}/sorted_$line.fa {params.LCPs}/consensus_$line.fasta
+			vsearch --sortbysize {params.LCPs}/consensus_$line.fasta --output {params.consensus}/$line.fasta --minsize 50
+			rm {params.LCPs}/sorted_$line.fa {params.LCPs}/consensus_$line.fasta {params.LCPs}/$line.fastq
 		done
 		"""
