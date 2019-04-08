@@ -18,7 +18,7 @@ BARCODES = config["barcodes"].split()
  
 rule all:
     input:
-        "data/02_LCPs/LCP_plot.pdf",
+        "data/02_LCPs/LCP_plots.pdf",
         "data/02_LCPs/LCP_clustering_heatmaps.html",
         #expand("data/03_LCPs_peaks/taxonomyFiles_{barcode}.txt", barcode=BARCODES)
         expand("data/03_LCPs_peaks/peaks-{barcode}.txt", barcode=BARCODES)
