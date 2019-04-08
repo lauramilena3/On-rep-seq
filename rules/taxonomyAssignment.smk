@@ -10,13 +10,14 @@ rule taxonomyAssignment:
 		"""
 		cat {input} | while read line
 		do
-			if [ -s {params}/$line.fa ]
+			echo "{params.consensus}/$line.fasta"
+			if [ -s {params.consensus}/$line.fasta ]
 			then
-				kraken2 --db {config[kraken_db]} {params.consensus}/$line.fa --use-names > {params.taxonomy}/taxonomy_$line.txt
+				kraken2 --db {config[kraken_db]} {params.consensus}/$line.fasta --use-names > {params.taxonomy}/taxonomy_$line.txt
 				echo "taxonomy_$line" >> {output}
 			else
 				touch {output}
 			fi
-			rm {params.consensus}/$line.fa
+			rm {params.consensus}/$line.fasta
 		done
 		"""
