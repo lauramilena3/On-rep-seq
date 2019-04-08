@@ -63,17 +63,18 @@ rule peakPicker:
 		"""
 rule LCPsCluster:
 	input:
-		directory("data/02_LCPs/")
+		expand("data/02_LCPs/{barcode}.txt", barcode=BARCODES)
 	output:
 		"data/02_LCPs/LCP_clustering_heatmaps.html"	
 	params:
-		"runnable_jupyter_on-rep-seq_flowgrams_clustering_heatmaps.html"
+		html="runnable_jupyter_on-rep-seq_flowgrams_clustering_heatmaps.html",
+		direct="data/02_LCPs"
 	conda:
 		"envs/R.yaml"
 	shell:
 		"""
 		Rscript -e "IRkernel::installspec()"
-		./scripts/LCpCluster.R {input} {params}
-		mv {params} {output}
+		./scripts/LCpCluster.R {params.direct} {params.html}
+		mv {params.html} {output}
 		"""
 
