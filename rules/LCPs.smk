@@ -2,7 +2,8 @@ rule getLCPs:
 	input:
 		"data/01_porechopped_data/{barcode}.fastq"
 	output:
-		"data/02_LCPs/{barcode}.txt"
+		"data/02_LCPs/{barcode}.txt",
+		directory("data/02_LCPs/")
 	params:
 		"data/02_LCPs"
 	shell:
