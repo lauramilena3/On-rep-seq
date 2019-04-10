@@ -13,7 +13,7 @@ rule demultiplexing_1:
         for filename in {input}/*fastq
         do
             echo $filename
-            porechop -i $filename -b dir_$filename -t {threads} --discard_unassigned
+            porechop -i $filename -b dir_$filename -t {threads} --discard_unassigned --verbosity 0
             for bar in dir_$filename/*.fastq
             do
                 f=$(basename -- $bar)
