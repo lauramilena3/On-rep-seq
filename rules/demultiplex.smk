@@ -10,13 +10,24 @@ rule demultiplexing_1:
     threads: 16
     shell:
         """ 
-        porechop -i {input} -b {params.output_dir} -t {threads} --discard_unassigned
+        for filename in {input}/*fastq
+        do
+            echo $filename
+            porechop -i $filename -b dir_$filename -t {threads} --discard_unassigned
+            for bar in dir_$filename/*.fastq
+            do
+                f=$(basename -- $bar)
+                cat $bar >> {params.output_dir}/$f
+            done  
+        done
+              
         for barcode in {BARCODES}
         do
             touch {params.output_dir}/$barcode.fastq
             mv {params.output_dir}/$barcode.fastq {params.output_dir}/$barcode_01.fastq
         done
         """
+
 rule demultiplexing_2:
     input:
         "data/01_porechopped_data/{barcode}_01.fastq" 
