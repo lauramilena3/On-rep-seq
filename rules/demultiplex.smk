@@ -19,6 +19,7 @@ rule demultiplexing_1:
                 f=$(basename -- $bar)
                 cat $bar >> {params.output_dir}/$f
             done  
+            rm -rf dir_$filename
         done
               
         for barcode in {BARCODES}
