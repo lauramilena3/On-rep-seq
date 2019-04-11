@@ -14,6 +14,7 @@ rule demultiplexing_1:
         """ 
         counter=1
         n=$(ls -l {input}/*fastq | wc -l )
+        rm {params.output_dir}/*fastq
         for filename in {input}/*fastq
         do
             echo "Processing sample $counter/$n"
