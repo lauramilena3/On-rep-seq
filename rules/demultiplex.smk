@@ -7,19 +7,24 @@ rule demultiplexing_1:
         output_dir="data/01_porechopped_data"
     conda:
         "envs/On-rep-seq.yaml"
+    message:
+        "Demultiplexing step 1"
     threads: 16
     shell:
         """ 
+        counter=1
+        n=$(ls -l {input}/*fastq | wc -l )
         for filename in {input}/*fastq
         do
-            echo $filename
-            porechop -i $filename -b dir_$filename -t {threads} --discard_unassigned --verbosity 0
+            echo "Processing sample $counter/$n"
+            porechop -i $filename -b dir_$filename -t {threads} --discard_unassigned --verbosity 0 > /dev/null 2>&1
             for bar in dir_$filename/*.fastq
             do
                 f=$(basename -- $bar)
                 cat $bar >> {params.output_dir}/$f
             done  
             rm -rf dir_$filename
+            counter=$((counter+1))
         done
               
         for barcode in {BARCODES}
