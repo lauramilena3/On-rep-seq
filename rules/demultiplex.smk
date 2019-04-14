@@ -28,12 +28,10 @@ rule demultiplexing_1:
         #    counter=$((counter+1))
         #done
         line=$(echo {BARCODES})
-        echo $line
         for barcode in $line
         do
-            echo $barcode
-            #touch {params.output_dir}/$barcode.fastq
-            #mv {params.output_dir}/$barcode.fastq {params.output_dir}/$barcode_01.fastq
+            touch {params.output_dir}/$barcode.fastq
+            mv {params.output_dir}/$barcode.fastq {params.output_dir}/$barcode_01.fastq
         done
         """
 
