@@ -29,7 +29,7 @@ rule demultiplexing_1:
         #done
         line=$(echo {BARCODES})
         echo $line
-        for barcode $line
+        for barcode in $line
         do
             echo $barcode
             #touch {params.output_dir}/$barcode.fastq
