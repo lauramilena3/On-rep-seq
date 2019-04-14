@@ -28,7 +28,7 @@ rule demultiplexing_1:
         #    counter=$((counter+1))
         #done
         line=$(echo {BARCODES})
-
+        echo $line
         for barcode $line
         do
             echo $barcode
