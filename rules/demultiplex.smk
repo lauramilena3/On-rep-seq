@@ -28,9 +28,8 @@ rule demultiplexing_1:
         #    counter=$((counter+1))
         #done
         line={BARCODES}
-        IFS=' ' read -a arr <<< "$line"        
-        echo $arr
-        for barcode in $arr
+
+        for barcode line
         do
             echo $barcode
             #touch {params.output_dir}/$barcode.fastq
