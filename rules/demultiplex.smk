@@ -15,18 +15,18 @@ rule demultiplexing_1:
         counter=1
         n=$(ls -l {input}/*fastq | wc -l )
         rm -f {params.output_dir}/*fastq
-        #for filename in {input}/*fastq
-        #do
-        #    echo "Processing sample $counter/$n"
-        #    porechop -i $filename -b dir_$filename -t {threads} --discard_unassigned --verbosity 0 > /dev/null 2>&1
-        #    for bar in dir_$filename/*.fastq
-        #    do
-        #        f=$(basename -- $bar)
-        #        cat $bar >> {params.output_dir}/$f
-        #    done  
-        #    rm -rf dir_$filename
-        #    counter=$((counter+1))
-        #done
+        for filename in {input}/*fastq
+        do
+            echo "Processing sample $counter/$n"
+            porechop -i $filename -b dir_$filename -t {threads} --discard_unassigned --verbosity 0 > /dev/null 2>&1
+            for bar in dir_$filename/*.fastq
+            do
+                f=$(basename -- $bar)
+                cat $bar >> {params.output_dir}/$f
+            done  
+            rm -rf dir_$filename
+            counter=$((counter+1))
+        done
         line=$(echo {BARCODES})
         for barcode in $line
         do
