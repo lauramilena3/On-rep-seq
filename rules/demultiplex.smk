@@ -37,7 +37,7 @@ rule demultiplexing_1:
 
 rule demultiplexing_2:
     input:
-        "data/01_porechopped_data/temp_{barcode}_01.fastq" 
+        "data/01_porechopped_data/temp_{barcode}.fastq" 
     output:
         "data/01_porechopped_data/{barcode}.fastq"
     conda:
