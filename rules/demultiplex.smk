@@ -27,7 +27,7 @@ rule demultiplexing_1:
         #    rm -rf dir_$filename
         #    counter=$((counter+1))
         #done
-        line=$( echo {BARCODES} )
+        line=$(echo {BARCODES})
 
         for barcode line
         do
