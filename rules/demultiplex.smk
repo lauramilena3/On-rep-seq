@@ -27,7 +27,8 @@ rule demultiplexing_1:
         #    rm -rf dir_$filename
         #    counter=$((counter+1))
         #done
-        arr=({BARCODES})
+        line={BARCODES}
+        IFS=' ' read -a arr <<< "$line"        
         echo $arr
         for barcode in $arr
         do
