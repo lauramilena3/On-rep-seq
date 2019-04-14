@@ -2,7 +2,7 @@ rule demultiplexing_1:
     input:
         BASECALLED_DIR
     output:
-        temp(expand("data/01_porechopped_data/{barcode}_01.fastq", barcode=BARCODES))
+        temp(expand("data/01_porechopped_data/_temp_{barcode}.fastq", barcode=BARCODES))
     params:
         output_dir="data/01_porechopped_data"
     conda:
@@ -31,13 +31,13 @@ rule demultiplexing_1:
         for barcode in $line
         do
             touch {params.output_dir}/$barcode.fastq
-            mv {params.output_dir}/$barcode.fastq {params.output_dir}/$barcode_01.fastq
+            mv {params.output_dir}/$barcode.fastq {params.output_dir}/temp_$barcode.fastq
         done
         """
 
 rule demultiplexing_2:
     input:
-        "data/01_porechopped_data/{barcode}_01.fastq" 
+        "data/01_porechopped_data/temp_{barcode}_01.fastq" 
     output:
         "data/01_porechopped_data/{barcode}.fastq"
     conda:
