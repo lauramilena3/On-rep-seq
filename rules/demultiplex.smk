@@ -27,11 +27,13 @@ rule demultiplexing_1:
         #    rm -rf dir_$filename
         #    counter=$((counter+1))
         #done
-        echo {BARCODES}
-        for barcode in {BARCODES}
+        arr=({BARCODES})
+        echo $arr
+        for barcode in $arr
         do
-            touch {params.output_dir}/$barcode.fastq
-            mv {params.output_dir}/$barcode.fastq {params.output_dir}/$barcode_01.fastq
+            echo $barcode
+            #touch {params.output_dir}/$barcode.fastq
+            #mv {params.output_dir}/$barcode.fastq {params.output_dir}/$barcode_01.fastq
         done
         """
 
