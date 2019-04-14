@@ -2,7 +2,7 @@ rule demultiplexing_1:
     input:
         BASECALLED_DIR
     output:
-        temp(expand("data/01_porechopped_data/_temp_{barcode}.fastq", barcode=BARCODES))
+        temp(expand("data/01_porechopped_data/temp_{barcode}.fastq", barcode=BARCODES))
     params:
         output_dir="data/01_porechopped_data"
     conda:
