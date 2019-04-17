@@ -58,7 +58,7 @@ rule peakPicker:
 		"envs/R.yaml"
 	shell:
 		"""
-		Rscript --vanilla scripts/peakpicker.R -f {input} -o {output} -v TRUE
+		Rscript --vanilla scripts/peakpicker.R -f {input} -o {output} -v TRUE || true 
 		touch {output}
 		"""
 rule LCPsCluster:
