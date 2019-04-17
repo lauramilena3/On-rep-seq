@@ -8,7 +8,7 @@ rule taxonomyAssignment:
 		taxonomy="data/03_LCPs_peaks/01_taxonomic_assignments"
 	shell:
 		"""
-		mkdir {params.taxonomy}
+		mkdir -p {params.taxonomy}
 		cat {input} | while read line
 		do
 			echo "{params.consensus}/$line.fasta"
