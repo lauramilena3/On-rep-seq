@@ -22,7 +22,8 @@ rule cutAdapt:
 				echo "{wildcards.barcode}_$name" >> {output}
 				rm {params.peaks}/{wildcards.barcode}_short_$name.fastq
 			fi
-		done	
+		done
+		touch {output}
 		"""
 rule correctReads:
 	input:
@@ -38,17 +39,18 @@ rule correctReads:
 		cat {input} | while read line
 		do
 			echo $line
-			./{config[canu_dir]}/canu -correct -p peak -d {params}/fixed_$line genomeSize=5k -nanopore-raw {params}/$line.fastq minReadLength=300 correctedErrorRate=0.01 corOutCoverage=5000 corMinCoverage=2 minOverlapLength=300 cnsErrorRate=0.1 cnsMaxCoverage=5000 useGrid=false || true
+			./{config[canu_dir]}/canu -correct -p peak -d {params}/fixed_$line genomeSize=5k -nanopore-raw {params}/$line.fastq \
+			minReadLength=300 correctedErrorRate=0.01 corOutCoverage=5000 corMinCoverage=2 minOverlapLength=300 cnsErrorRate=0.1 \
+			cnsMaxCoverage=5000 useGrid=false || true
 			if [ -s {params}/fixed_$line/peak.correctedReads.fasta.gz ];
         	then
         		gunzip -c {params}/fixed_$line/peak.correctedReads.fasta.gz > {params}/fixed_$line.fastq
         		echo "fixed_$line" >> {output}
-        	else
-            	touch {output}
         	fi
         	rm -rf {params}/fixed_$line
         	rm {params}/$line.fastq
 		done
+		touch {output}
 		"""
 rule vSearch:
 	input:
@@ -72,4 +74,5 @@ rule vSearch:
 			vsearch --sortbysize {params.LCPs}/consensus_$line.fasta --output {params.consensus}/$line.fasta --minsize 50
 			rm {params.LCPs}/sorted_$line.fasta {params.LCPs}/consensus_$line.fasta {params.LCPs}/$line.fastq
 		done
+		touch {output}
 		"""
