@@ -32,7 +32,7 @@ rule plotLCPs:
 		for row in axes:
 			for ax in row:
 				if i < len(filelist):
-					if os.path.getsize(filelist[i]) > 0:
+					if os.path.getsize(filelist[i]) > 10:
 						print(filelist[i])
 						data=np.loadtxt(filelist[i])
 						X=data[:,0]
