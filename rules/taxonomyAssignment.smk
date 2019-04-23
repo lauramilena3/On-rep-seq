@@ -20,3 +20,15 @@ rule taxonomyAssignment:
 		done
 		touch {output}
 		"""
+rule checkOutputs:
+	input:
+		expand("data/03_LCPs_peaks/taxonomyFiles_{barcode}.txt", barcode=BARCODES),
+	output:
+		"data/check.txt"
+	shell:
+		"""
+		if [ -s {input.pdf} ] && [ -s {input.html} ]
+			echo "On-rep-seq succesfuly executed" >> {output}
+		fi
+		"""
+
