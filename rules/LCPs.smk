@@ -74,6 +74,7 @@ rule LCPsCluster:
 		"envs/R.yaml"
 	shell:
 		"""
+		mkdir -p {output.directory}
 		cp {params.directory}/*.txt {output.directory}
 		find {output.directory} -size 0 -delete
 		Rscript -e "IRkernel::installspec()"
