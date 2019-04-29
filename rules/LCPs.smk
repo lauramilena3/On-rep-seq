@@ -66,7 +66,7 @@ rule LCPsCluster:
 		expand("data/02_LCPs/{barcode}.txt", barcode=BARCODES)
 	output:
 		html="data/02_LCPs/LCP_clustering_heatmaps.html",
-		directory=temp("data/02_LCPs/txt")
+		directory=temp(directory("data/02_LCPs/txt"))
 	params:
 		html="runnable_jupyter_on-rep-seq_flowgrams_clustering_heatmaps.html",
 		directory="data/02_LCPs"
