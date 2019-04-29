@@ -33,7 +33,6 @@ rule plotLCPs:
 			for ax in row:
 				if i < len(filelist):
 					if os.path.getsize(filelist[i]) > 10:
-						print(filelist[i])
 						data=np.loadtxt(filelist[i])
 						X=data[:,0]
 						Y=data[:,1]
@@ -66,16 +65,19 @@ rule LCPsCluster:
 	input:
 		expand("data/02_LCPs/{barcode}.txt", barcode=BARCODES)
 	output:
-		"data/02_LCPs/LCP_clustering_heatmaps.html"	
+		html="data/02_LCPs/LCP_clustering_heatmaps.html",
+		directory=temp("data/02_LCPs/txt")
 	params:
 		html="runnable_jupyter_on-rep-seq_flowgrams_clustering_heatmaps.html",
-		direct="data/02_LCPs"
+		directory="data/02_LCPs"
 	conda:
 		"envs/R.yaml"
 	shell:
 		"""
+		cp {params.direct}/*txt {output.directory}
+		find {output.directory} -size 0 -delete
 		Rscript -e "IRkernel::installspec()"
-		./scripts/LCpCluster.R {params.direct} {params.html}
-		mv {params.html} {output}
+		./scripts/LCpCluster.R {output.directory} {params.html}
+		mv {params.html} {output.html}
 		"""
 
