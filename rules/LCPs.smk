@@ -53,13 +53,15 @@ rule peakPicker:
 	input:
 		OUTPUT_DIR + "/02_LCPs/{barcode}.txt"
 	output:
-		OUTPUT_DIR + "/03_LCPs_peaks/peaks_{barcode}.txt"
+		txt=OUTPUT_DIR + "/03_LCPs_peaks/peaks_{barcode}.txt"
+		pdf=temp(OUTPUT_DIR + "/03_LCPs_peaks/peaks_{barcode}.pdf")
 	conda:
 		"envs/R.yaml"
 	shell:
 		"""
-		Rscript --vanilla scripts/peakpicker.R -f {input} -o {output} -v TRUE || true 
-		touch {output}
+		Rscript --vanilla scripts/peakpicker.R -f {input} -o {output.txt} -v TRUE || true 
+		touch {output.txt}
+		touch {output.pdf}
 		"""
 rule LCPsCluster:
 	input:
