@@ -53,7 +53,7 @@ rule peakPicker:
 	input:
 		OUTPUT_DIR + "/02_LCPs/{barcode}.txt"
 	output:
-		txt=OUTPUT_DIR + "/03_LCPs_peaks/peaks_{barcode}.txt"
+		txt=OUTPUT_DIR + "/03_LCPs_peaks/peaks_{barcode}.txt",
 		pdf=temp(OUTPUT_DIR + "/03_LCPs_peaks/peaks_{barcode}.pdf")
 	conda:
 		"envs/R.yaml"
