@@ -3,7 +3,7 @@ rule taxonomyAssignment:
 		OUTPUT_DIR + "/03_LCPs_peaks/00_peak_consensus/vsearch_fixed_{barcode}.txt"	
 	output:
 		merged=temp(OUTPUT_DIR + "/03_LCPs_peaks/merged_fixed_{barcode}.fasta"),
-		taxonomy=OUTPUT_DIR + "/03_LCPs_peaks/01_taxonomic_assignments/taxonomy_{barcode}.txt"
+		taxonomy=OUTPUT_DIR + "/03_LCPs_peaks/01_taxonomic_assignments/taxonomy_{barcode}.txt",
 		taxonomy_final=OUTPUT_DIR + "/03_LCPs_peaks/01_taxonomic_assignments/taxonomy_assignments.txt"
 	params:
 		consensus=OUTPUT_DIR + "/03_LCPs_peaks/00_peak_consensus",
