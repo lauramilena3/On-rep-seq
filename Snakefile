@@ -12,8 +12,8 @@ configfile: "config.yaml"
 RULES_DIR = 'rules'
 BASECALLED_DIR = config["basecalled_dir"]
 BARCODES = config["barcodes"].split()
-INPUT_DIR=config["basecalled_dir"]
-OUTPUT_DIR=config["results_dir"]
+INPUT_DIR=config["basecalled_dir"].strip("/")
+OUTPUT_DIR=config["results_dir"].strip("/")
 #======================================================
 # Rules
 #======================================================
