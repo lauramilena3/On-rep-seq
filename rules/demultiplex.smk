@@ -2,9 +2,9 @@ rule demultiplexing_1:
     input:
         BASECALLED_DIR
     output:
-        temp(expand("data/01_porechopped_data/{barcode}.fastq_01", barcode=BARCODES))
+        temp(expand(OUTPUT_DIR + "/01_porechopped_data/{barcode}.fastq_01", barcode=BARCODES))
     params:
-        output_dir="data/01_porechopped_data"
+        output_dir=OUTPUT_DIR + "/01_porechopped_data"
     conda:
         "envs/On-rep-seq.yaml"
     message:
@@ -37,9 +37,9 @@ rule demultiplexing_1:
 
 rule demultiplexing_2:
     input:
-        "data/01_porechopped_data/{barcode}.fastq_01" 
+        OUTPUT_DIR + "/01_porechopped_data/{barcode}.fastq_01" 
     output:
-        "data/01_porechopped_data/{barcode}.fastq"
+        OUTPUT_DIR + "/01_porechopped_data/{barcode}.fastq"
     conda:
         "envs/On-rep-seq.yaml"
     shell:

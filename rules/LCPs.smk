@@ -1,19 +1,19 @@
 rule getLCPs:
 	input:
-		"data/01_porechopped_data/{barcode}.fastq"
+		OUTPUT_DIR + "/01_porechopped_data/{barcode}.fastq"
 	output:
-		"data/02_LCPs/{barcode}.txt",
+		OUTPUT_DIR + "/02_LCPs/{barcode}.txt",
 	params:
-		"data/02_LCPs"
+		OUTPUT_DIR + "/02_LCPs"
 	shell:
 		"""
 		cat {input} | awk '{{if(NR%4==2) print length($1)+0}}' | sort -n | uniq -c | sed "s/   //g" |  sed "s/  //g" | sed "s/^ *// " > {output}
 		"""
 rule plotLCPs:
 	input:
-		expand("data/02_LCPs/{barcode}.txt", barcode=BARCODES)
+		expand(OUTPUT_DIR + "/02_LCPs/{barcode}.txt", barcode=BARCODES)
 	output:
-		pdfResults="data/02_LCPs/LCP_plots.pdf"		
+		pdfResults=OUTPUT_DIR + "/02_LCPs/LCP_plots.pdf"		
 	run:
 		#import libraries
 		import matplotlib.pyplot as plt
@@ -47,13 +47,13 @@ rule plotLCPs:
 					
 					i += 1
 		#save figure to pdf				
-		fig.savefig("data/02_LCPs/LCP_plots.pdf", bbox_inches='tight')
+		fig.savefig(OUTPUT_DIR + "/02_LCPs/LCP_plots.pdf", bbox_inches='tight')
 
 rule peakPicker:
 	input:
-		"data/02_LCPs/{barcode}.txt"
+		OUTPUT_DIR + "/02_LCPs/{barcode}.txt"
 	output:
-		"data/03_LCPs_peaks/peaks_{barcode}.txt"
+		OUTPUT_DIR + "/03_LCPs_peaks/peaks_{barcode}.txt"
 	conda:
 		"envs/R.yaml"
 	shell:
@@ -63,13 +63,13 @@ rule peakPicker:
 		"""
 rule LCPsCluster:
 	input:
-		expand("data/02_LCPs/{barcode}.txt", barcode=BARCODES)
+		expand(OUTPUT_DIR + "/02_LCPs/{barcode}.txt", barcode=BARCODES)
 	output:
-		html="data/02_LCPs/LCP_clustering_heatmaps.html",
-		directory=temp(directory("data/02_LCPs/txt"))
+		html=OUTPUT_DIR + "/02_LCPs/LCP_clustering_heatmaps.html",
+		directory=temp(directory(OUTPUT_DIR + "/02_LCPs/txt"))
 	params:
 		html="runnable_jupyter_on-rep-seq_flowgrams_clustering_heatmaps.html",
-		directory="data/02_LCPs"
+		directory=OUTPUT_DIR + "/02_LCPs"
 	conda:
 		"envs/R.yaml"
 	shell:

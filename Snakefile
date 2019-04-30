@@ -12,16 +12,17 @@ configfile: "config.yaml"
 RULES_DIR = 'rules'
 BASECALLED_DIR = config["basecalled_dir"]
 BARCODES = config["barcodes"].split()
-
+INPUT_DIR=config["basecalled_dir"]
+OUTPUT_DIR=config["results_dir"]
 #======================================================
 # Rules
 #======================================================
  
 rule all:
     input:
-        "data/02_LCPs/LCP_plots.pdf",
-        "data/02_LCPs/LCP_clustering_heatmaps.html",
-        "data/check.txt"
+        OUTPUT_DIR + "/02_LCPs/LCP_plots.pdf",
+        OUTPUT_DIR + "/02_LCPs/LCP_clustering_heatmaps.html",
+        OUTPUT_DIR + "/check.txt"
 
 include: os.path.join(RULES_DIR, 'demultiplex.smk')
 include: os.path.join(RULES_DIR, 'LCPs.smk')

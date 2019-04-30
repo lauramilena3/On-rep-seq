@@ -1,13 +1,13 @@
 rule cutAdapt:
 	input:
-		"data/03_LCPs_peaks/peaks_{barcode}.txt"
+		OUTPUT_DIR + "/03_LCPs_peaks/peaks_{barcode}.txt"
 	output:
-		temp("data/03_LCPs_peaks/input-peaks-{barcode}.txt")
+		temp(OUTPUT_DIR + "/03_LCPs_peaks/input-peaks-{barcode}.txt")
 	conda:
 		"envs/On-rep-seq.yaml"
 	params:
-		porechopped="data/01_porechopped_data",
-		peaks="data/03_LCPs_peaks"
+		porechopped=OUTPUT_DIR + "/01_porechopped_data",
+		peaks=OUTPUT_DIR + "/03_LCPs_peaks"
 	shell:
 		"""
 		sed 1d {input} | while read line
@@ -27,11 +27,11 @@ rule cutAdapt:
 		"""
 rule correctReads:
 	input:
-		"data/03_LCPs_peaks/input-peaks-{barcode}.txt"
+		OUTPUT_DIR + "/03_LCPs_peaks/input-peaks-{barcode}.txt"
 	output:
-		temp("data/03_LCPs_peaks/fixed_{barcode}.txt")
+		temp(OUTPUT_DIR + "/03_LCPs_peaks/fixed_{barcode}.txt")
 	params:
-		"data/03_LCPs_peaks"
+		OUTPUT_DIR + "/03_LCPs_peaks"
 	conda:
 		"envs/canu.yaml"
 	shell:
@@ -54,12 +54,12 @@ rule correctReads:
 		"""
 rule vSearch:
 	input:
-		"data/03_LCPs_peaks/fixed_{barcode}.txt"	
+		OUTPUT_DIR + "/03_LCPs_peaks/fixed_{barcode}.txt"	
 	output:
-		temp("data/03_LCPs_peaks/00_peak_consensus/vsearch_fixed_{barcode}.txt")
+		temp(OUTPUT_DIR + "/03_LCPs_peaks/00_peak_consensus/vsearch_fixed_{barcode}.txt")
 	params:
-		LCPs="data/03_LCPs_peaks",
-		consensus="data/03_LCPs_peaks/00_peak_consensus"
+		LCPs=OUTPUT_DIR + "/03_LCPs_peaks",
+		consensus=OUTPUT_DIR + "/03_LCPs_peaks/00_peak_consensus"
 	conda:
 		"envs/On-rep-seq.yaml"
 	shell:

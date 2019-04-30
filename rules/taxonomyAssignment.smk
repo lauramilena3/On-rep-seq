@@ -1,11 +1,12 @@
 rule taxonomyAssignment:
 	input:
-		"data/03_LCPs_peaks/00_peak_consensus/vsearch_fixed_{barcode}.txt"	
+		OUTPUT_DIR + "/03_LCPs_peaks/00_peak_consensus/vsearch_fixed_{barcode}.txt"	
 	output:
-		temp("data/03_LCPs_peaks/taxonomyFiles_{barcode}.txt")
+		temp(OUTPUT_DIR + "/03_LCPs_peaks/taxonomyFiles_{barcode}.txt")
+		merged=temp(OUTPUT_DIR + "/03_LCPs_peaks/merged_fixed_{barcode}.fasta")
+		taxonomy=OUTPUT_DIR + "/03_LCPs_peaks/01_taxonomic_assignments/taxonomy_{barcode}.txt"
 	params:
-		consensus="data/03_LCPs_peaks/00_peak_consensus",
-		taxonomy="data/03_LCPs_peaks/01_taxonomic_assignments"
+		consensus=OUTPUT_DIR + "/03_LCPs_peaks/00_peak_consensus",
 	shell:
 		"""
 		mkdir -p {params.taxonomy}
@@ -14,17 +15,17 @@ rule taxonomyAssignment:
 			echo "{params.consensus}/$line.fasta"
 			if [ -s {params.consensus}/$line.fasta ]
 			then
-				kraken2 --db {config[kraken_db]} {params.consensus}/$line.fasta --use-names > {params.taxonomy}/taxonomy_$line.txt
-				echo "taxonomy_$line" >> {output}
+				cat {params.consensus}/$line.fasta >> {output.merged}
 			fi
 		done
+		kraken2 --db {config[kraken_db]} {output.merged} --use-names > {output.taxonomy}
 		touch {output}
 		"""
 rule checkOutputs:
 	input:
-		expand("data/03_LCPs_peaks/taxonomyFiles_{barcode}.txt", barcode=BARCODES),
+		expand(OUTPUT_DIR + "/03_LCPs_peaks/01_taxonomic_assignments/taxonomy_{barcode}.txt", barcode=BARCODES),
 	output:
-		protected("data/check.txt")
+		protected(OUTPUT_DIR + "/check.txt")
 	shell:
 		"""
 		echo "On-rep-seq succesfuly executed" >> {output}
