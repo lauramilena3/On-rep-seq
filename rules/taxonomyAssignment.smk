@@ -4,6 +4,7 @@ rule taxonomyAssignment:
 	output:
 		merged=temp(OUTPUT_DIR + "/03_LCPs_peaks/merged_fixed_{barcode}.fasta"),
 		taxonomy=OUTPUT_DIR + "/03_LCPs_peaks/01_taxonomic_assignments/taxonomy_{barcode}.txt"
+		taxonomy_final=OUTPUT_DIR + "/03_LCPs_peaks/01_taxonomic_assignments/taxonomy_assignments.txt"
 	params:
 		consensus=OUTPUT_DIR + "/03_LCPs_peaks/00_peak_consensus",
 		taxonomy=OUTPUT_DIR + "/03_LCPs_peaks/01_taxonomic_assignments"
@@ -20,6 +21,8 @@ rule taxonomyAssignment:
 		done
 		kraken2 --db {config[kraken_db]} {output.merged} --use-names > {output.taxonomy} 
 		touch {output.taxonomy}
+		touch {output.taxonomy_final}
+		awk -F '\t' '{print FILENAME " " $3}' {output.taxonomy} | sort | uniq -c | sort -nr >> {output.taxonomy_final} 
 		"""
 rule checkOutputs:
 	input:
