@@ -26,7 +26,7 @@ rule taxonomyAssignment:
 		"""
 rule checkOutputs:
 	input:
-		expand(OUTPUT_DIR + "/03_LCPs_peaks/01_taxonomic_assignments/taxonomy_{barcode}.txt", barcode=BARCODES),
+		expand(OUTPUT_DIR + "/03_LCPs_peaks/01_taxonomic_assignments/taxonomy_{barcode}.txt", barcode=BARCODES)
 	output:
 		protected(OUTPUT_DIR + "/check.txt")
 	shell:
