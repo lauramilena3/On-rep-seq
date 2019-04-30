@@ -19,7 +19,7 @@ rule taxonomyAssignment:
 				cat {params.consensus}/$line.fasta >> {output.merged}
 			fi
 		done
-		kraken2 --db {config[kraken_db]} {output.merged} --use-names > {output.taxonomy} 
+		kraken2 --db {config[kraken_db]} {output.merged} --use-names > {output.taxonomy} || true 
 		touch {output.taxonomy}
 		touch {output.taxonomy_final}
 		awk -F '\t' '{print FILENAME " " $3}' {output.taxonomy} | sort | uniq -c | sort -nr >> {output.taxonomy_final} 
