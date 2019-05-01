@@ -21,8 +21,9 @@ rule taxonomyAssignment:
 		done
 		kraken2 --db {config[kraken_db]} {output.merged} --use-names > {output.taxonomy} || true 
 		touch {output.taxonomy}
+		touch {output.merged}
 		awk -F '\t' '{{print FILENAME " " $3}}' {output.taxonomy} | sort | uniq -c | sort -nr >> {params.taxonomy_final} 
-		"""
+		""
 rule checkOutputs:
 	input:
 		expand(OUTPUT_DIR + "/03_LCPs_peaks/01_taxonomic_assignments/taxonomy_{barcode}.txt", barcode=BARCODES)
