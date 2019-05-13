@@ -18,12 +18,11 @@ Create On-rep-seq virtual environment and activate it::
    conda env create -n On-rep-seq -f On-rep-seq.yaml
    source activate On-rep-seq
 
-Go into On-rep-seq directory and create symbolic links to your 
-basecalled data on the data/basecalled directory::
+Go into On-rep-seq directory and create variables to your 
+basecalled data and the results directory of your choice::
    
    fastqDir="/path/to/your/basecalled/data"
-   mkdir -p data/00_basecalled_data
-   ln -s $fastqDir/*fastq data/00_basecalled_data 
+   reusultDir="/path/to/your/desired/results/dir"
 
 Running
 =======
@@ -37,25 +36,29 @@ If you are using os then you need to edit the config file to set a new directory
 Download kraken database
 ------------------------
 
-Download kraken database, notice this step can take up to 48 hours::
+View the number of avaliable cores and set a number::
    
-   kraken2-build --download-taxonomy --db db/NCBI-bacteria #4h
-   kraken2-build --download-library bacteria --db db/NCBI-bacteria #33h
-   kraken2-build --build --db db/NCBI-bacteria #4h
+   nproc
+   nCores="n"
+
+If you are using your laptop we suggest you to leave 2 free processors
+for other system tasks. 
+
+Download kraken database, notice this step can take up to 48 hours::
+
+   
+   kraken2-build --download-taxonomy --db db/NCBI-bacteria --threads $nCores #4h
+   kraken2-build --download-library bacteria --db db/NCBI-bacteria --threads $nCores #33h
+   kraken2-build --build --db db/NCBI-bacteria --threads $nCores #4h
 
 Running On-rep-seq
 ------------------
 
-View the number of avaliable cores with::
-   
-   nproc
 
 Run the snakemake pipeline with the desired number of cores::
    
-   snakemake -j nCores --use-conda
+   snakemake -j $nCores --use-conda --config basecalled_data=$fastqDir results_dir=$reusultDir
 
-If you are using your laptop we suggest you to leave 2 free processors
-for other system tasks. 
 
 View dag of jobs to visualize the workflow 
 ++++++++++++++++++++++++++++++++++++++++++

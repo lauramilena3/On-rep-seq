@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Requirements: &mdash; On-rep-seq 1.0 documentation</title>
+  <title>Requirements &mdash; On-rep-seq 1.0 documentation</title>
   
 
   
@@ -80,17 +80,18 @@
             
               <p class="caption"><span class="caption-text">Getting started</span></p>
 <ul class="current">
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Requirements:</a></li>
-<li class="toctree-l1"><a class="reference internal" href="#installation">Installation:</a></li>
-<li class="toctree-l1"><a class="reference internal" href="#running">Running:</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#note-to-os-users-canu">Note to Os users: Canu</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Requirements</a></li>
+<li class="toctree-l1"><a class="reference internal" href="#installation">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="#running">Running</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#note-to-os-users-canu">Note to Os users (Canu)</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#download-kraken-database">Download kraken database</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#running-on-rep-seq">Running On-rep-seq:</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#running-on-rep-seq">Running On-rep-seq</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#view-dag-of-jobs-to-visualize-the-workflow">View dag of jobs to visualize the workflow</a></li>
 </ul>
 </li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="#results">Results</a></li>
 </ul>
 
             
@@ -136,7 +137,7 @@
     
       <li><a href="index.html">Docs</a> &raquo;</li>
         
-      <li>Requirements:</li>
+      <li>Requirements</li>
     
     
       <li class="wy-breadcrumbs-aside">
@@ -156,16 +157,17 @@
            <div itemprop="articleBody">
             
   <div class="section" id="requirements">
-<h1>Requirements:<a class="headerlink" href="#requirements" title="Permalink to this headline">¶</a></h1>
+<h1>Requirements<a class="headerlink" href="#requirements" title="Permalink to this headline">¶</a></h1>
 <ul class="simple">
 <li>Anaconda</li>
 </ul>
 <p>You can follow the <a class="reference external" href="https://docs.anaconda.com/anaconda/install/">installation guide</a> .</p>
 </div>
 <div class="section" id="installation">
-<h1>Installation:<a class="headerlink" href="#installation" title="Permalink to this headline">¶</a></h1>
-<p>Clone github repo:</p>
+<h1>Installation<a class="headerlink" href="#installation" title="Permalink to this headline">¶</a></h1>
+<p>Clone github repo and enter directory:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">clone</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">lauramilena3</span><span class="o">/</span><span class="n">On</span><span class="o">-</span><span class="n">rep</span><span class="o">-</span><span class="n">seq</span>
+<span class="n">cd</span> <span class="n">On</span><span class="o">-</span><span class="n">rep</span><span class="o">-</span><span class="n">seq</span>
 </pre></div>
 </div>
 <p>Create On-rep-seq virtual environment and activate it:</p>
@@ -173,19 +175,17 @@
 <span class="n">source</span> <span class="n">activate</span> <span class="n">On</span><span class="o">-</span><span class="n">rep</span><span class="o">-</span><span class="n">seq</span>
 </pre></div>
 </div>
-<p>Go into On-rep-seq directory and create symbolic links to your
-basecalled data on the data/basecalled directory:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>cd On-rep-seq/
-fastqDir=$yourDataDir
-ln -s $fastqDir/*fastq data/basecalled
+<p>Go into On-rep-seq directory and create variables to your
+basecalled data and the results directory of your choice:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">fastqDir</span><span class="o">=</span><span class="s2">&quot;/path/to/your/basecalled/data&quot;</span>
+<span class="n">reusultDir</span><span class="o">=</span><span class="s2">&quot;/path/to/your/desired/results/dir&quot;</span>
 </pre></div>
 </div>
-<p>Change <code class="docutils literal notranslate"><span class="pre">$yourDataDir</span></code> with the corresponding directory that holds your data.</p>
 </div>
 <div class="section" id="running">
-<h1>Running:<a class="headerlink" href="#running" title="Permalink to this headline">¶</a></h1>
+<h1>Running<a class="headerlink" href="#running" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="note-to-os-users-canu">
-<h2>Note to Os users: Canu<a class="headerlink" href="#note-to-os-users-canu" title="Permalink to this headline">¶</a></h2>
+<h2>Note to Os users (Canu)<a class="headerlink" href="#note-to-os-users-canu" title="Permalink to this headline">¶</a></h2>
 <p>If you are using os then you need to edit the config file to set a new directory for canu:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sed</span> <span class="o">-</span><span class="n">i</span><span class="s1">&#39;.bak&#39;</span> <span class="o">-</span><span class="n">e</span> <span class="s1">&#39;s/Linux-amd64/Darwin-amd64/g&#39;</span> <span class="n">config</span><span class="o">.</span><span class="n">yaml</span>
 </pre></div>
@@ -193,25 +193,26 @@ ln -s $fastqDir/*fastq data/basecalled
 </div>
 <div class="section" id="download-kraken-database">
 <h2>Download kraken database<a class="headerlink" href="#download-kraken-database" title="Permalink to this headline">¶</a></h2>
+<p>View the number of avaliable cores and set a number:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">nproc</span>
+<span class="n">nCores</span><span class="o">=</span><span class="s2">&quot;n&quot;</span>
+</pre></div>
+</div>
+<p>If you are using your laptop we suggest you to leave 2 free processors
+for other system tasks.</p>
 <p>Download kraken database, notice this step can take up to 48 hours:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>kraken2-build --download-taxonomy --db db/NCBI-bacteria
-kraken2-build --download-library bacteria --db db/NCBI-bacteria
-kraken2-build --build --db $DBNAME
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>kraken2-build --download-taxonomy --db db/NCBI-bacteria --threads $nCores #4h
+kraken2-build --download-library bacteria --db db/NCBI-bacteria --threads $nCores #33h
+kraken2-build --build --db db/NCBI-bacteria --threads $nCores #4h
 </pre></div>
 </div>
 </div>
 <div class="section" id="running-on-rep-seq">
-<h2>Running On-rep-seq:<a class="headerlink" href="#running-on-rep-seq" title="Permalink to this headline">¶</a></h2>
-<p>View the number of avaliable cores with:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">nproc</span>
-</pre></div>
-</div>
+<h2>Running On-rep-seq<a class="headerlink" href="#running-on-rep-seq" title="Permalink to this headline">¶</a></h2>
 <p>Run the snakemake pipeline with the desired number of cores:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">snakemake</span> <span class="o">-</span><span class="n">j</span> <span class="n">nCores</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>snakemake -j $nCores --use-conda --config basecalled_data=$fastqDir results_dir=$reusultDir
 </pre></div>
 </div>
-<p>If you are using your laptop we recommend to leave 2 free processors
-for other tasks.</p>
 <div class="section" id="view-dag-of-jobs-to-visualize-the-workflow">
 <h3>View dag of jobs to visualize the workflow<a class="headerlink" href="#view-dag-of-jobs-to-visualize-the-workflow" title="Permalink to this headline">¶</a></h3>
 <p>To view the dag run:</p>
@@ -220,6 +221,11 @@ for other tasks.</p>
 </div>
 </div>
 </div>
+</div>
+<div class="section" id="results">
+<h1>Results<a class="headerlink" href="#results" title="Permalink to this headline">¶</a></h1>
+<p>All results are stored in the data folder</p>
+<p><code class="docutils literal notranslate"><span class="pre">01_porechopped_data</span></code></p>
 </div>
 
 
