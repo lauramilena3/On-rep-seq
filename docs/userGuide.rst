@@ -1,7 +1,7 @@
 Requirements
 ============
 
-- Anaconda
+- Anaconda 1
 
 You can follow the `installation guide <https://docs.anaconda.com/anaconda/install/>`_ .
 
