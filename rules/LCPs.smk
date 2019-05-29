@@ -67,7 +67,7 @@ rule LCPsCluster:
 	input:
 		expand(OUTPUT_DIR + "/02_LCPs/{barcode}.txt", barcode=BARCODES)
 	output:
-		html=OUTPUT_DIR + "/02_LCPs/LCP_clustering_heatmaps.html",
+		html=OUTPUT_DIR + "/02_LCPs/LCP_clustering_heatmaps.ipynb",
 		directory=temp(directory(OUTPUT_DIR + "/02_LCPs/txt")),
 		directory_data=temp(directory("r_saved_images")),
 	params:
