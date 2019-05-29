@@ -78,7 +78,7 @@ rule LCPsCluster:
 		"""
 		mkdir -p {output.directory}
 		cp {params.directory}/*.txt {output.directory}
-		find {output.directory} -size 0 -delete
+		find {output.directory} -size 100 -delete
 		Rscript -e "IRkernel::installspec()"
 		./scripts/LCpCluster.R {output.directory} {params.html}
 		mv {params.html} {output.html}
