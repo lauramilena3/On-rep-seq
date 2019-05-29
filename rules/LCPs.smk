@@ -68,7 +68,8 @@ rule LCPsCluster:
 		expand(OUTPUT_DIR + "/02_LCPs/{barcode}.txt", barcode=BARCODES)
 	output:
 		html=OUTPUT_DIR + "/02_LCPs/LCP_clustering_heatmaps.html",
-		directory=(directory(OUTPUT_DIR + "/02_LCPs/txt"))
+		directory=temp(directory(OUTPUT_DIR + "/02_LCPs/txt"))
+		directory_data=temp("r_saved_images")
 	params:
 		html="runnable_jupyter_on-rep-seq_flowgrams_clustering_heatmaps.html",
 		directory=OUTPUT_DIR + "/02_LCPs"
@@ -82,5 +83,6 @@ rule LCPsCluster:
 		Rscript -e "IRkernel::installspec()"
 		./scripts/LCpCluster.R {output.directory} {params.html}
 		mv {params.html} {output.html}
+		mv {output.directory_data}/runnable_jupyter_on-rep-seq_flowgrams_clustering_heatmaps* {params.directory}
 		"""
 
