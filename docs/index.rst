@@ -6,6 +6,12 @@
 Welcome to On-rep-seq's documentation!
 ======================================
 
+.. image:: ON-rep-seq.png
+   :width: 200px
+   :height: 100px
+   :scale: 50 %
+   :alt: alternate text
+   :align: right
 
 .. toctree::
    :caption: Getting started
