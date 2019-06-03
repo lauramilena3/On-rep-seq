@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Requirements &mdash; On-rep-seq 1.0 documentation</title>
+  <title>ON-rep-seq analysis toolbox &mdash; On-rep-seq 1.0 documentation</title>
   
 
   
@@ -80,18 +80,23 @@
             
               <p class="caption"><span class="caption-text">Getting started</span></p>
 <ul class="current">
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Requirements</a></li>
-<li class="toctree-l1"><a class="reference internal" href="#installation">Installation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="#running">Running</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#note-to-os-users-canu">Note to Os users (Canu)</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">ON-rep-seq analysis toolbox</a></li>
+<li class="toctree-l1"><a class="reference internal" href="#requirements">Requirements</a></li>
+<li class="toctree-l1"><a class="reference internal" href="#installation">Installation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#note-to-macos-users-canu">Note to macOS users (Canu)</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#download-kraken-database">Download kraken database</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#running-on-rep-seq">Running On-rep-seq</a><ul>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="#running-on-rep-seq-analysis">Running On-rep-seq analysis</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#input-data">Input data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#running">Running</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#view-dag-of-jobs-to-visualize-the-workflow">View dag of jobs to visualize the workflow</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="#results">Results</a></li>
+<li class="toctree-l1"><a class="reference internal" href="#results-structure">Results structure</a></li>
+<li class="toctree-l1"><a class="reference internal" href="#publications-citing">Publications &amp; citing</a></li>
 </ul>
 
             
@@ -137,7 +142,7 @@
     
       <li><a href="index.html">Docs</a> &raquo;</li>
         
-      <li>Requirements</li>
+      <li>ON-rep-seq analysis toolbox</li>
     
     
       <li class="wy-breadcrumbs-aside">
@@ -156,7 +161,13 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="requirements">
+  <div class="section" id="on-rep-seq-analysis-toolbox">
+<h1>ON-rep-seq analysis toolbox<a class="headerlink" href="#on-rep-seq-analysis-toolbox" title="Permalink to this headline">¶</a></h1>
+<p>ON-rep-seq is a molecular method where bacterial (or yeast) selective intragenomic fragments generated with Rep-PCR are sequenced using Oxford Nanopore Technologies.
+This apporoch allows for species and sub-species level identification but also often strain level discrimination of bacterial and yeast isolates at very low cost.
+Current version of ON-rep-seq allows for analysis of up to 192 isolates in one R9 flow cell but will give most cost effective results by using <a class="reference external" href="https://nanoporetech.com/products/flongle">flongle</a> for which it wass initially designed.</p>
+</div>
+<div class="section" id="requirements">
 <h1>Requirements<a class="headerlink" href="#requirements" title="Permalink to this headline">¶</a></h1>
 <ul class="simple">
 <li>Anaconda</li>
@@ -181,11 +192,8 @@ basecalled data and the results directory of your choice:</p>
 <span class="n">reusultDir</span><span class="o">=</span><span class="s2">&quot;/path/to/your/desired/results/dir&quot;</span>
 </pre></div>
 </div>
-</div>
-<div class="section" id="running">
-<h1>Running<a class="headerlink" href="#running" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="note-to-os-users-canu">
-<h2>Note to Os users (Canu)<a class="headerlink" href="#note-to-os-users-canu" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="note-to-macos-users-canu">
+<h2>Note to macOS users (Canu)<a class="headerlink" href="#note-to-macos-users-canu" title="Permalink to this headline">¶</a></h2>
 <p>If you are using os then you need to edit the config file to set a new directory for canu:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sed</span> <span class="o">-</span><span class="n">i</span><span class="s1">&#39;.bak&#39;</span> <span class="o">-</span><span class="n">e</span> <span class="s1">&#39;s/Linux-amd64/Darwin-amd64/g&#39;</span> <span class="n">config</span><span class="o">.</span><span class="n">yaml</span>
 </pre></div>
@@ -193,22 +201,30 @@ basecalled data and the results directory of your choice:</p>
 </div>
 <div class="section" id="download-kraken-database">
 <h2>Download kraken database<a class="headerlink" href="#download-kraken-database" title="Permalink to this headline">¶</a></h2>
-<p>View the number of avaliable cores and set a number:</p>
+<p>View the number of avaliable cores in your machine and set a number:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">nproc</span>
 <span class="n">nCores</span><span class="o">=</span><span class="s2">&quot;n&quot;</span>
 </pre></div>
 </div>
-<p>If you are using your laptop we suggest you to leave 2 free processors
+<p>If you are using your laptop we suggest you to leave 2 free cores
 for other system tasks.</p>
-<p>Download kraken database, notice this step can take up to 48 hours:</p>
+<p>Download kraken database. Notice this step can take up to 48 hours (!needs to be done only once):</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>kraken2-build --download-taxonomy --db db/NCBI-bacteria --threads $nCores #4h
 kraken2-build --download-library bacteria --db db/NCBI-bacteria --threads $nCores #33h
 kraken2-build --build --db db/NCBI-bacteria --threads $nCores #4h
 </pre></div>
 </div>
 </div>
-<div class="section" id="running-on-rep-seq">
-<h2>Running On-rep-seq<a class="headerlink" href="#running-on-rep-seq" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="running-on-rep-seq-analysis">
+<h1>Running On-rep-seq analysis<a class="headerlink" href="#running-on-rep-seq-analysis" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="input-data">
+<h2>Input data<a class="headerlink" href="#input-data" title="Permalink to this headline">¶</a></h2>
+<p>The input data is basecalled fastq files. Please check <a class="reference external" href="https://community.nanoporetech.com/downloads">Guppy basecaller</a>
+For best performance we strongly recommend basecalling on GPU (tested on GTX 1080Ti and RTX 2080).</p>
+</div>
+<div class="section" id="running">
+<h2>Running<a class="headerlink" href="#running" title="Permalink to this headline">¶</a></h2>
 <p>Run the snakemake pipeline with the desired number of cores:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>snakemake -j $nCores --use-conda --config basecalled_data=$fastqDir results_dir=$reusultDir
 </pre></div>
@@ -222,10 +238,14 @@ kraken2-build --build --db db/NCBI-bacteria --threads $nCores #4h
 </div>
 </div>
 </div>
-<div class="section" id="results">
-<h1>Results<a class="headerlink" href="#results" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="results-structure">
+<h1>Results structure<a class="headerlink" href="#results-structure" title="Permalink to this headline">¶</a></h1>
 <p>All results are stored in the data folder</p>
 <p><code class="docutils literal notranslate"><span class="pre">01_porechopped_data</span></code></p>
+</div>
+<div class="section" id="publications-citing">
+<h1>Publications &amp; citing<a class="headerlink" href="#publications-citing" title="Permalink to this headline">¶</a></h1>
+<p><a class="reference external" href="https://www.biorxiv.org/content/10.1101/402156v1">bioRxiv</a></p>
 </div>
 
 

@@ -9,15 +9,6 @@ Welcome to On-rep-seq's documentation!
 
 .. toctree::
    :caption: Getting started
-   :hidden:
    :maxdepth: 1
 
    userGuide
-
-
-Indices and tables
-==================
-
-* :ref:`genindex`
-* :ref:`modindex`
-* :ref:`search`
