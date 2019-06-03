@@ -6,7 +6,7 @@
 Welcome to On-rep-seq's documentation!
 ======================================
 
-.. image:: https://user-images.githubusercontent.com/12174880/58798344-ace11700-8602-11e9-84d1-73812087842b.png
+.. image:: https://user-images.githubusercontent.com/12174880/58798705-9a1b1200-8603-11e9-8e0f-6de06c8350b5.png
    :scale: 100 %
    :alt: logo
    :align: left
