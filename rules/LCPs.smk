@@ -72,7 +72,7 @@ rule LCPsCluster:
 		directory=(directory(OUTPUT_DIR + "/02_LCPs/LCPsClusteringData")),
 		directory_data=temp(directory("r_saved_images")),
 	params:
-		ipynb="runnable_jupyter_on-rep-seq_flowgrams_clustering_heatmaps." + CLUSTERING,
+		ipynb="runnable_jupyter_on-rep-seq_flowgrams_clustering_heatmaps.ipynb",
 		directory=OUTPUT_DIR + "/02_LCPs"
 	conda:
 		"envs/R.yaml"
