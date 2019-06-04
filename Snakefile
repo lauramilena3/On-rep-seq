@@ -14,6 +14,8 @@ BASECALLED_DIR = config["basecalled_dir"]
 BARCODES = config["barcodes"].split()
 INPUT_DIR=config["basecalled_dir"].rstrip("/")
 OUTPUT_DIR=config["results_dir"].rstrip("/")
+WORKFLOW_DATA=OUTPUT_DIR + "/ON-rep-seq_DATA"
+
 #======================================================
 # Rules
 #======================================================
@@ -21,7 +23,7 @@ OUTPUT_DIR=config["results_dir"].rstrip("/")
 rule all:
     input:
         OUTPUT_DIR + "/02_LCPs/LCP_plots.pdf",
-        #OUTPUT_DIR + "/02_LCPs/LCP_clustering_heatmaps.html",
+        OUTPUT_DIR + "/02_LCPs/LCP_clustering_heatmaps.html",
         OUTPUT_DIR + "/02_LCPs/LCP_clustering_heatmaps.ipynb",        
         OUTPUT_DIR + "/check.txt"
 
