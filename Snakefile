@@ -14,7 +14,6 @@ BASECALLED_DIR = config["basecalled_dir"]
 BARCODES = config["barcodes"].split()
 INPUT_DIR=config["basecalled_dir"].rstrip("/")
 OUTPUT_DIR=config["results_dir"].rstrip("/")
-CLUSTERING=config["clustering_output"]
 #======================================================
 # Rules
 #======================================================
