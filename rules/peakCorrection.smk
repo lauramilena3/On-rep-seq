@@ -54,7 +54,6 @@ rule correctReads:
 		"""
 rule vSearch:
 	input:
-	
 		WORKFLOW_DATA + "/fixed_{barcode}.txt"
 	output:
 		WORKFLOW_DATA + "vsearch_fixed_{barcode}.txt"
