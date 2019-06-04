@@ -69,7 +69,7 @@ rule LCPsCluster:
 	output:
 		ipynb=OUTPUT_DIR + "/02_LCPs/LCP_clustering_heatmaps.ipynb",
 		directory=(directory(OUTPUT_DIR + "/02_LCPs/LCPsClusteringData")),
-		directory_data=temp(directory("r_saved_images")),
+		directory_data=(directory("r_saved_images")),
 	params:
 		ipynb="runnable_jupyter_on-rep-seq_flowgrams_clustering_heatmaps.ipynb",
 		directory=OUTPUT_DIR + "/02_LCPs"
@@ -83,6 +83,6 @@ rule LCPsCluster:
 		Rscript -e "IRkernel::installspec()"
 		./scripts/LCpCluster.R {output.directory} {params.ipynb}
 		ln -sf {params.ipynb} {output.ipynb}
-		mv {output.directory_data}/runnable_jupyter_on-rep-seq_flowgrams_clustering_heatmaps* {output.directory}
+		#mv {output.directory_data}/runnable_jupyter_on-rep-seq_flowgrams_clustering_heatmaps* {output.directory}
 		"""
 
