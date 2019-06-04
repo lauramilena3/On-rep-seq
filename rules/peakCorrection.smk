@@ -76,4 +76,3 @@ rule vSearch:
 		done
 		touch {output}
 		"""
-		AATCGCCCUTCCCAA
