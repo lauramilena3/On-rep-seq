@@ -83,6 +83,6 @@ rule LCPsCluster:
 		Rscript -e "IRkernel::installspec()"
 		./scripts/LCpCluster.R {output.directory} {params.ipynb}
 		mv {params.ipynb} {output.ipynb}
-		#mv {output.directory_data}/runnable_jupyter_on-rep-seq_flowgrams_clustering_heatmaps* {output.directory}
+		cp {output.directory_data}/runnable_jupyter_on-rep-seq_flowgrams_clustering_heatmaps.Rdata {output.directory}
 		"""
 
