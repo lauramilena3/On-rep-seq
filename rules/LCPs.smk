@@ -86,6 +86,6 @@ rule LCPsCluster:
 		./scripts/LCpCluster.R {output.directory} {params.ipynb}
 		mv {params.ipynb} {output.ipynb}
 		cp {output.directory_data}/runnable_jupyter_on-rep-seq_flowgrams_clustering_heatmaps.Rdata {output.directory}/runnable_jupyter_on-rep-seq_flowgrams_clustering_heatmaps.Rdata
-		jupyter-nbconvert --to html --template basic {output.ipynb} 
+		jupyter-nbconvert --to html --template full {output.ipynb} 
 		"""
 
