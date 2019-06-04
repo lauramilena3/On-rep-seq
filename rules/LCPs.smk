@@ -67,11 +67,11 @@ rule LCPsCluster:
 	input:
 		expand(OUTPUT_DIR + "/02_LCPs/{barcode}.txt", barcode=BARCODES)
 	output:
-		html=OUTPUT_DIR + "/02_LCPs/LCP_clustering_heatmaps.ipynb",
-		directory=temp(directory(OUTPUT_DIR + "/02_LCPs/txt")),
+		ipynb=OUTPUT_DIR + "/02_LCPs/LCP_clustering_heatmaps.ipynb",
+		directory=(directory(OUTPUT_DIR + "/02_LCPs/LCPsClusteringData")),
 		directory_data=temp(directory("r_saved_images")),
 	params:
-		html="runnable_jupyter_on-rep-seq_flowgrams_clustering_heatmaps.ipynb",
+		ipynb="runnable_jupyter_on-rep-seq_flowgrams_clustering_heatmaps.ipynb",
 		directory=OUTPUT_DIR + "/02_LCPs"
 	conda:
 		"envs/R.yaml"
@@ -81,8 +81,8 @@ rule LCPsCluster:
 		cp {params.directory}/*.txt {output.directory}
 		find {output.directory} -size -100c -delete
 		Rscript -e "IRkernel::installspec()"
-		./scripts/LCpCluster.R {output.directory} {params.html}
-		mv {params.html} {output.html}
-		mv {output.directory_data}/runnable_jupyter_on-rep-seq_flowgrams_clustering_heatmaps* {params.directory}
+		./scripts/LCpCluster.R {output.directory} {params.ipynb}
+		ln -sf {params.ipynb} {output.ipynb}
+		mv {output.directory_data}/runnable_jupyter_on-rep-seq_flowgrams_clustering_heatmaps* {output.directory}
 		"""
 
