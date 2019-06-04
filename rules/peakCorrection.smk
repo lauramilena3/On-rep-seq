@@ -2,7 +2,7 @@ rule cutAdapt:
 	input:
 		OUTPUT_DIR + "/03_LCPs_peaks/peaks_{barcode}.txt"
 	output:
-		temp(OUTPUT_DIR + "/03_LCPs_peaks/input-peaks-{barcode}.txt")
+		WORKFLOW_DATA + "/input-peaks-{barcode}.txt"
 	conda:
 		"envs/On-rep-seq.yaml"
 	params:
@@ -27,9 +27,9 @@ rule cutAdapt:
 		"""
 rule correctReads:
 	input:
-		OUTPUT_DIR + "/03_LCPs_peaks/input-peaks-{barcode}.txt"
+		WORKFLOW_DATA + "/input-peaks-{barcode}.txt"
 	output:
-		temp(OUTPUT_DIR + "/03_LCPs_peaks/fixed_{barcode}.txt")
+		WORKFLOW_DATA + "/fixed_{barcode}.txt"
 	params:
 		OUTPUT_DIR + "/03_LCPs_peaks"
 	conda:
@@ -54,9 +54,10 @@ rule correctReads:
 		"""
 rule vSearch:
 	input:
-		OUTPUT_DIR + "/03_LCPs_peaks/fixed_{barcode}.txt"	
+	
+		WORKFLOW_DATA + "/fixed_{barcode}.txt"
 	output:
-		temp(OUTPUT_DIR + "/03_LCPs_peaks/00_peak_consensus/vsearch_fixed_{barcode}.txt")
+		WORKFLOW_DATA + "vsearch_fixed_{barcode}.txt"
 	params:
 		LCPs=OUTPUT_DIR + "/03_LCPs_peaks",
 		consensus=OUTPUT_DIR + "/03_LCPs_peaks/00_peak_consensus"
@@ -76,3 +77,4 @@ rule vSearch:
 		done
 		touch {output}
 		"""
+		AATCGCCCUTCCCAA

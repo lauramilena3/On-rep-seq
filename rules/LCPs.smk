@@ -1,6 +1,6 @@
 rule getLCPs:
 	input:
-		OUTPUT_DIR + "/01_porechopped_data/{barcode}.fastq"
+		OUTPUT_DIR + "/01_porechopped_data/{barcode}_demultiplexed.fastq"
 	output:
 		OUTPUT_DIR + "/02_LCPs/{barcode}.txt",
 	params:
@@ -74,13 +74,14 @@ rule LCPsCluster:
 	params:
 		ipynb="runnable_jupyter_on-rep-seq_flowgrams_clustering_heatmaps.ipynb",
 		directory=OUTPUT_DIR + "/02_LCPs"
+		min_size=100
 	conda:
 		"envs/R.yaml"
 	shell:
 		"""
 		mkdir -p {output.directory}
 		cp {params.directory}/*.txt {output.directory}
-		find {output.directory} -size -100c -delete
+		find {output.directory} -size -{params.min_size}c -delete
 		Rscript -e "IRkernel::installspec()"
 		./scripts/LCpCluster.R {output.directory} {params.ipynb}
 		mv {params.ipynb} {output.ipynb}

@@ -2,7 +2,7 @@ rule demultiplexing_1:
     input:
         BASECALLED_DIR
     output:
-        temp(expand(OUTPUT_DIR + "/01_porechopped_data/{barcode}.fastq_01", barcode=BARCODES))
+        temp(expand(OUTPUT_DIR + "/01_porechopped_data/{barcode}.fastq", barcode=BARCODES))
     params:
         output_dir=OUTPUT_DIR + "/01_porechopped_data"
     conda:
@@ -11,7 +11,8 @@ rule demultiplexing_1:
         "Demultiplexing step 1"
     threads: 16
     shell:
-        """ 
+        """
+        head -n 25 scripts/logo.txt 
         counter=1
         n=$(ls -l {input}/*fastq | wc -l )
         rm -f {params.output_dir}/*fastq
@@ -31,15 +32,14 @@ rule demultiplexing_1:
         for barcode in $line
         do
             touch {params.output_dir}/$barcode.fastq
-            mv {params.output_dir}/$barcode.fastq {params.output_dir}/$barcode.fastq_01
         done
         """
 
 rule demultiplexing_2:
     input:
-        OUTPUT_DIR + "/01_porechopped_data/{barcode}.fastq_01" 
+        OUTPUT_DIR + "/01_porechopped_data/{barcode}.fastq" 
     output:
-        OUTPUT_DIR + "/01_porechopped_data/{barcode}.fastq"
+        OUTPUT_DIR + "/01_porechopped_data/{barcode}_demultiplexed.fastq"
     conda:
         "envs/On-rep-seq.yaml"
     shell:
