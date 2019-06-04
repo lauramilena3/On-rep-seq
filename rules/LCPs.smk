@@ -67,11 +67,11 @@ rule LCPsCluster:
 	input:
 		expand(OUTPUT_DIR + "/02_LCPs/{barcode}.txt", barcode=BARCODES)
 	output:
-		ipynb=OUTPUT_DIR + "/02_LCPs/LCP_clustering_heatmaps.ipynb",
+		ipynb=OUTPUT_DIR + "/02_LCPs/LCP_clustering_heatmaps." + CLUSTERING,
 		directory=(directory(OUTPUT_DIR + "/02_LCPs/LCPsClusteringData")),
 		directory_data=(directory("r_saved_images")),
 	params:
-		ipynb="runnable_jupyter_on-rep-seq_flowgrams_clustering_heatmaps.ipynb",
+		ipynb="runnable_jupyter_on-rep-seq_flowgrams_clustering_heatmaps." + CLUSTERING,
 		directory=OUTPUT_DIR + "/02_LCPs"
 	conda:
 		"envs/R.yaml"

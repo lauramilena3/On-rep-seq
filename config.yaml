@@ -1,6 +1,8 @@
 basecalled_dir: "data/00_basecalled_data"
 results_dir: "data"
 canu_dir: "canu/canu-1.8/Linux-amd64/bin"
+clustering_output: "jpynb"    # [jpynb, html]
+kraken_db: "db/NCBI-bacteria"
 barcodes: "repBC01 repBC02 repBC03 repBC04 repBC05 repBC06 repBC07 repBC08 repBC09 repBC10 
           repBC100 repBC101 repBC102 repBC103 repBC104 repBC105 repBC106 repBC107 repBC108 repBC109 
           repBC11 repBC110 repBC111 repBC112 repBC113 repBC114 repBC115 repBC116 repBC117 repBC118 
@@ -20,4 +22,3 @@ barcodes: "repBC01 repBC02 repBC03 repBC04 repBC05 repBC06 repBC07 repBC08 repBC
           repBC73 repBC74 repBC75 repBC76 repBC77 repBC78 repBC79 repBC80 repBC81 repBC82 repBC83 
           repBC84 repBC85 repBC86 repBC87 repBC88 repBC89 repBC90 repBC91 repBC92 repBC93 repBC94 
           repBC95 repBC96 repBC97 repBC98 repBC99"
-kraken_db: "db/NCBI-bacteria"
