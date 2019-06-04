@@ -23,7 +23,7 @@ rule all:
     input:
         OUTPUT_DIR + "/02_LCPs/LCP_plots.pdf",
         #OUTPUT_DIR + "/02_LCPs/LCP_clustering_heatmaps.html",
-        OUTPUT_DIR + "/02_LCPs/LCP_clustering_heatmaps." + CLUSTERING,        
+        OUTPUT_DIR + "/02_LCPs/LCP_clustering_heatmaps.ipynb",        
         OUTPUT_DIR + "/check.txt"
 
 include: os.path.join(RULES_DIR, 'demultiplex.smk')
