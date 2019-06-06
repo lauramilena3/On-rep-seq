@@ -42,6 +42,8 @@ OUTFIFO="${OUTFILE}.stdout.fifo"
 
 [ -p "$OUTFIFO" ] || mkfifo "$OUTFIFO"
 
+MA_WINDOW_SIZE=20
+
 ## Warning, '#' inside variables needs to be quoted with '\'
 { cat "$OUTFIFO" >&2 &
 "${SCRIPTDIR}/jupyter_execute_notebook.sh" \
@@ -52,6 +54,8 @@ OUTFIFO="${OUTFILE}.stdout.fifo"
     "__SRC_PARENT_DIR=${SCRIPTDIR}" \
     "__REP_SAMPLE_DIR=${REPSAMPDIR}" \
     "__PROJECT_PREFIX=${OUTPREF}" \
+    "__HMAP_PREFIX=${OUTPREF}" \
+    "__MA_WINDOW_SIZE=${MA_WINDOW_SIZE}" \
     "__NB_TITLE=${OUTFILE}" \
     "__TEST_VAR=10" \
     "__TEST2_VAR=aaa" 
