@@ -249,8 +249,24 @@ For best performance we strongly recommend basecalling on GPU (tested on GTX 108
 </div>
 <div class="section" id="results-structure">
 <h1>Results structure<a class="headerlink" href="#results-structure" title="Permalink to this headline">¶</a></h1>
-<p>All results are stored in the data folder</p>
-<p><code class="docutils literal notranslate"><span class="pre">01_porechopped_data</span></code></p>
+<p>All results are stored in the Results folder as follows:</p>
+<p>Results
+├── 01_porechopped_data
+│&nbsp;&nbsp; └── {barcode}_demultiplexed.fastq     # Demultiplexed fastq per barcode
+├── 02_LCPs
+│&nbsp;&nbsp; ├── LCP_clustering_heatmaps.ipynb     # Clustering jupyter notebook
+│&nbsp;&nbsp; ├── LCP_plots.pdf                     # Plots
+│&nbsp;&nbsp; ├── {barcode}.txt                     # All LCPs
+│&nbsp;&nbsp; └── LCPsClusteringData
+│&nbsp;&nbsp;     └── {barcode}.txt                 # LCPs used for clustering
+├── 03_LCPs_peaks
+│&nbsp;&nbsp; ├── 00_peak_consensus
+│&nbsp;&nbsp; │&nbsp;&nbsp; └── fixed_{barcode}_{peak}.fasta  # Corrected consensus fasta of peaks
+│&nbsp;&nbsp; ├── 01_taxonomic_assignments
+│&nbsp;&nbsp; │&nbsp;&nbsp; ├── taxonomy_assignments.txt      # Taxonomy of all barcodes
+│&nbsp;&nbsp; │&nbsp;&nbsp; └── taxonomy_{barcode}.txt        # Taxonomy per Barcode
+│&nbsp;&nbsp; └──  peaks_{barcode}.txt              # File with the peaks of each barcode
+└── check.txt                             # Final file “On-rep-seq succesfuly executed”</p>
 </div>
 <div class="section" id="publications-citing">
 <h1>Publications &amp; citing<a class="headerlink" href="#publications-citing" title="Permalink to this headline">¶</a></h1>

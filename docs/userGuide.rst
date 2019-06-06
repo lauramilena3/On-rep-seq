@@ -93,10 +93,25 @@ To view the dag run::
 Results structure 
 =================
 
-All results are stored in the data folder
+All results are stored in the Results folder as follows:
 
-``01_porechopped_data``
-
+Results
+├── 01_porechopped_data                
+│   └── {barcode}_demultiplexed.fastq     # Demultiplexed fastq per barcode
+├── 02_LCPs
+│   ├── LCP_clustering_heatmaps.ipynb     # Clustering jupyter notebook
+│   ├── LCP_plots.pdf                     # Plots 
+│   ├── {barcode}.txt                     # All LCPs
+│   └── LCPsClusteringData                
+│       └── {barcode}.txt                 # LCPs used for clustering
+├── 03_LCPs_peaks                      
+│   ├── 00_peak_consensus              
+│   │   └── fixed_{barcode}_{peak}.fasta  # Corrected consensus fasta of peaks
+│   ├── 01_taxonomic_assignments          
+│   │   ├── taxonomy_assignments.txt      # Taxonomy of all barcodes
+│   │   └── taxonomy_{barcode}.txt        # Taxonomy per Barcode
+│   └──  peaks_{barcode}.txt              # File with the peaks of each barcode
+└── check.txt                             # Final file "On-rep-seq succesfuly executed"
 
 
 Publications & citing
