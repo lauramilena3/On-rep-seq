@@ -56,7 +56,7 @@ rule vSearch:
 	input:
 		WORKFLOW_DATA + "/fixed_{barcode}.txt"
 	output:
-		WORKFLOW_DATA + "vsearch_fixed_{barcode}.txt"
+		WORKFLOW_DATA + "/vsearch_fixed_{barcode}.txt"
 	params:
 		LCPs=OUTPUT_DIR + "/03_LCPs_peaks",
 		consensus=OUTPUT_DIR + "/03_LCPs_peaks/00_peak_consensus"
