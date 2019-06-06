@@ -29,8 +29,11 @@ rule checkOutputs:
 		expand(OUTPUT_DIR + "/03_LCPs_peaks/01_taxonomic_assignments/taxonomy_{barcode}.txt", barcode=BARCODES)
 	output:
 		protected(OUTPUT_DIR + "/check.txt")
+	params:
+		peaks=OUTPUT_DIR + "/03_LCPs_peaks"
 	shell:
 		"""
+		rm {params.peaks}/*fastq {params.peaks}/*fasta 
 		echo "On-rep-seq succesfuly executed" >> {output}
 		"""
 
