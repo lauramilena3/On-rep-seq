@@ -60,6 +60,14 @@ Download kraken database. Notice this step can take up to 48 hours (!needs to be
 Running On-rep-seq analysis
 ===========================
 
+Note to all users
+-----------------
+
+ON-rep-seq is under regular updates. For better results, please keep your local installation up to date::
+   
+   cd On-rep-seq
+   git pull
+
 Input data
 ----------
 
