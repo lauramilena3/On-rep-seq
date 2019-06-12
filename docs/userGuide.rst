@@ -81,6 +81,13 @@ Run the snakemake pipeline with the desired number of cores::
    
    snakemake -j $nCores --use-conda --config basecalled_dir=$fastqDir results_dir=$reusultDir
 
+Limiting memory
+...............
+
+You can limit the memory resources  (in Megabytes) used per core by using the resources directive as follows::
+   
+   snakemake -j $nCores --use-conda --config basecalled_dir=$fastqDir results_dir=$reusultDir --resources mem_mb=$max_mem
+
 
 View dag of jobs to visualize the workflow 
 ++++++++++++++++++++++++++++++++++++++++++
