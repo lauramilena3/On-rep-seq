@@ -61,6 +61,7 @@ rule vSearch:
 		"envs/On-rep-seq.yaml"
 	shell:
 		"""
+		mkdir -p {params.consensus}
 		cat {input} | while read line
 		do
 			count=$(grep -c ">" {params.LCPs}/$line.fastq )
