@@ -79,7 +79,7 @@ Running
 
 Run the snakemake pipeline with the desired number of cores::
    
-   snakemake -j $nCores --use-conda --config basecalled_data=$fastqDir results_dir=$reusultDir
+   snakemake -j $nCores --use-conda --config basecalled_dir=$fastqDir results_dir=$reusultDir
 
 
 View dag of jobs to visualize the workflow 
