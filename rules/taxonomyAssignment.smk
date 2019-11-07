@@ -1,8 +1,8 @@
 rule taxonomyAssignment:
 	input:
-		WORKFLOW_DATA + "vsearch_fixed_{barcode}.txt"
+		WORKFLOW_DATA + "/vsearch_fixed_{barcode}.txt"
 	output:
-		merged=WORKFLOW_DATA + "merged_fixed_{barcode}.fasta",
+		merged=WORKFLOW_DATA + "/merged_fixed_{barcode}.fasta",
 		taxonomy=OUTPUT_DIR + "/03_LCPs_peaks/01_taxonomic_assignments/taxonomy_{barcode}.txt"
 	params:
 		consensus=OUTPUT_DIR + "/03_LCPs_peaks/00_peak_consensus",
@@ -29,8 +29,11 @@ rule checkOutputs:
 		expand(OUTPUT_DIR + "/03_LCPs_peaks/01_taxonomic_assignments/taxonomy_{barcode}.txt", barcode=BARCODES)
 	output:
 		protected(OUTPUT_DIR + "/check.txt")
+	params:
+		peaks=OUTPUT_DIR + "/03_LCPs_peaks"
 	shell:
 		"""
+		rm {params.peaks}/*fastq {params.peaks}/*fasta 
 		echo "On-rep-seq succesfuly executed" >> {output}
 		"""
 

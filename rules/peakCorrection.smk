@@ -20,7 +20,6 @@ rule cutAdapt:
 				cutadapt -m $P1 {params.porechopped}/{wildcards.barcode}_demultiplexed.fastq -o {params.peaks}/{wildcards.barcode}_short_$name.fastq 
 				cutadapt -M $P2 {params.peaks}/{wildcards.barcode}_short_$name.fastq -o {params.peaks}/{wildcards.barcode}_$name.fastq
 				echo "{wildcards.barcode}_$name" >> {output}
-				rm {params.peaks}/{wildcards.barcode}_short_$name.fastq
 			fi
 		done
 		touch {output}
@@ -43,12 +42,10 @@ rule correctReads:
 			minReadLength=300 correctedErrorRate=0.01 corOutCoverage=5000 corMinCoverage=2 minOverlapLength=300 cnsErrorRate=0.1 \
 			cnsMaxCoverage=5000 useGrid=false || true
 			if [ -s {params}/fixed_$line/peak.correctedReads.fasta.gz ];
-        	then
-        		gunzip -c {params}/fixed_$line/peak.correctedReads.fasta.gz > {params}/fixed_$line.fastq
-        		echo "fixed_$line" >> {output}
-        	fi
-        	rm -rf {params}/fixed_$line
-        	rm {params}/$line.fastq
+        		then
+        			gunzip -c {params}/fixed_$line/peak.correctedReads.fasta.gz > {params}/fixed_$line.fastq
+        			echo "fixed_$line" >> {output}
+        		fi
 		done
 		touch {output}
 		"""
@@ -56,7 +53,7 @@ rule vSearch:
 	input:
 		WORKFLOW_DATA + "/fixed_{barcode}.txt"
 	output:
-		WORKFLOW_DATA + "vsearch_fixed_{barcode}.txt"
+		WORKFLOW_DATA + "/vsearch_fixed_{barcode}.txt"
 	params:
 		LCPs=OUTPUT_DIR + "/03_LCPs_peaks",
 		consensus=OUTPUT_DIR + "/03_LCPs_peaks/00_peak_consensus"
@@ -64,6 +61,7 @@ rule vSearch:
 		"envs/On-rep-seq.yaml"
 	shell:
 		"""
+		mkdir -p {params.consensus}
 		cat {input} | while read line
 		do
 			count=$(grep -c ">" {params.LCPs}/$line.fastq )
@@ -72,7 +70,6 @@ rule vSearch:
 			vsearch --sortbylength {params.LCPs}/$line.fastq --output {params.LCPs}/sorted_$line.fasta
 			vsearch --cluster_fast {params.LCPs}/sorted_$line.fasta -id 0.9  --consout {params.LCPs}/consensus_$line.fasta -strand both -minsl 0.80 -sizeout -minuniquesize $min
 			vsearch --sortbysize {params.LCPs}/consensus_$line.fasta --output {params.consensus}/$line.fasta --minsize 50
-			rm {params.LCPs}/sorted_$line.fasta {params.LCPs}/consensus_$line.fasta {params.LCPs}/$line.fastq
 		done
 		touch {output}
 		"""
