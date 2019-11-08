@@ -12,19 +12,19 @@ rule demultiplexing_1:
     threads: 16
     shell:
         """
-        head -n 25 scripts/logo.txt 
+        head -n 25 scripts/logo.txt
         counter=1
         n=$(ls -l {input}/*fastq | wc -l )
         rm -f {params.output_dir}/*fastq
         for filename in {input}/*fastq
         do
             echo "Processing sample $counter/$n"
-            porechop -i $filename -b dir_$filename -t {threads} --discard_unassigned --verbosity 0 > /dev/null 2>&1
+            porechop -i $filename -b dir_$filename -t {threads} --discard_unassigned --verbosity 2 > /dev/null 2>&1
             for bar in dir_$filename/*.fastq
             do
                 f=$(basename -- $bar)
                 cat $bar >> {params.output_dir}/$f
-            done  
+            done
             rm -rf dir_$filename
             counter=$((counter+1))
         done
@@ -37,18 +37,23 @@ rule demultiplexing_1:
 
 rule demultiplexing_2:
     input:
-        OUTPUT_DIR + "/01_porechopped_data/{barcode}.fastq" 
+        OUTPUT_DIR + "/01_porechopped_data/{barcode}.fastq"
     output:
         OUTPUT_DIR + "/01_porechopped_data/{barcode}_demultiplexed.fastq"
     conda:
         "envs/On-rep-seq.yaml"
     shell:
         """
-        if [ -s {input} ];
+        if [ -s {input} ]
         then
             porechop -i {input} -o {output} --fp2ndrun
+            reads=$(grep -c "^@" {output})
+            if (( {$reads} < 2000 ))
+            then
+                rm {output}
+                touch {output}
+            fi
         else
             touch {output}
         fi
-
         """
