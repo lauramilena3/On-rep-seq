@@ -15,7 +15,7 @@ rule demultiplexing_1:
         head -n 25 scripts/logo.txt
         counter=1
         n=$(ls -l {input}/*fastq | wc -l )
-        rm -f {params.output_dir}/*fastq
+        rm -rf {params.output_dir}/*fastq
         for filename in {input}/*fastq
         do
             echo "Processing sample $counter/$n"
