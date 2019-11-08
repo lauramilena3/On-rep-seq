@@ -6,4 +6,4 @@ dependencies:
   - vsearch =2.11.1
   - cutadapt =2.1
   - pip:
-    - git+https://github.com/macieksk/Porechop
+    - git+https://github.com/lauramilena3/Porechop
