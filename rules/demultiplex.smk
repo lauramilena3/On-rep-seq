@@ -24,12 +24,12 @@ rule demultiplexing_1:
             echo $filename
             echo "porechop -i $filename -b {params.output_dir}/${{run}} -t {threads} --discard_unassigned --verbosity 2 > /dev/null 2>&1"
             porechop -i $filename -b {params.output_dir}/${{run}} -t {threads} --discard_unassigned --verbosity 2 > /dev/null 2>&1
-            for bar in dir_$filename/*.fastq
+            for bar in {params.output_dir}/${{run}}/*.fastq
             do
                 f=$(basename -- $bar)
                 cat $bar >> {params.output_dir}/$f
             done
-            rm -rf dir_$filename
+            rm -rf {params.output_dir}/${{run}}
             counter=$((counter+1))
         done
         line=$(echo {BARCODES})
