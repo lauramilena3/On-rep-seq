@@ -21,8 +21,6 @@ rule demultiplexing_1:
             echo "Processing sample $counter/$n"
             run=$(basename -- $filename)
             echo $run
-            echo $filename
-            echo "porechop -i $filename -b {params.output_dir}/${{run}} -t {threads} --discard_unassigned --verbosity 2 > /dev/null 2>&1"
             porechop -i $filename -b {params.output_dir}/${{run}} -t {threads} --discard_unassigned --verbosity 2 > /dev/null 2>&1
             for bar in {params.output_dir}/${{run}}/*.fastq
             do
