@@ -18,10 +18,12 @@ rule demultiplexing_1:
         rm -f {params.output_dir}/*fastq
         for filename in {input}/*fastq
         do
+            echo "Processing sample $counter/$n"
             run=$(basename -- $filename)
             echo $run
-            echo "Processing sample $counter/$n"
-            porechop -i $filename -b {params.output_dir}/${{filename}} -t {threads} --discard_unassigned --verbosity 2 > /dev/null 2>&1
+            echo $filename
+            echo "porechop -i $filename -b {params.output_dir}/${{run}} -t {threads} --discard_unassigned --verbosity 2 > /dev/null 2>&1"
+            porechop -i $filename -b {params.output_dir}/${{run}} -t {threads} --discard_unassigned --verbosity 2 > /dev/null 2>&1
             for bar in dir_$filename/*.fastq
             do
                 f=$(basename -- $bar)
