@@ -73,7 +73,7 @@ rule LCPsCluster:
 		png2=OUTPUT_DIR + "/02_LCPs/LCP_clustering_heatmap.png",
 		fl_pdf=OUTPUT_DIR + "/02_LCPs/LCP_clustering_flowgrams_clustering_order.pdf",
 		directory=(directory(OUTPUT_DIR + "/02_LCPs/LCPsClusteringData")),
-		directory_data=(directory(OUTPUT_DIR+"/02_LCPs/r_saved_images")), 
+		directory_data=temp(directory(OUTPUT_DIR+"/02_LCPs/r_saved_images")), 
 	params:
 		work_directory=OUTPUT_DIR + "/02_LCPs",
 		ipynb="runnable_jupyter_on-rep-seq_flowgrams_clustering_heatmaps.ipynb",
