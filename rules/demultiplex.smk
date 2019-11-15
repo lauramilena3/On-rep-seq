@@ -2,9 +2,9 @@ rule demultiplexing_1:
     input:
         BASECALLED_DIR
     output:
-        temp(directory(OUTPUT_DIR + "/01_porechopped_data/{{sample}}/"))
+        temp(directory(OUTPUT_DIR + "/01_porechopped_data/{sample}/"))
     params:
-        output_dir=OUTPUT_DIR + "/01_porechopped_data/{{sample}}"
+        output_dir=OUTPUT_DIR + "/01_porechopped_data/{sample}"
     conda:
         "envs/On-rep-seq.yaml"
     message:
@@ -22,7 +22,7 @@ rule demultiplexing_1:
 
 rule merge_first_demultiplexing:
     input:
-        expand(directory(OUTPUT_DIR + "/01_porechopped_data/{sample}, sample=SAMPLES))
+        expand(directory(OUTPUT_DIR + "/01_porechopped_data/{sample}", sample=SAMPLES))
     output:
         temp(OUTPUT_DIR + "/01_porechopped_data/{barcode}.fastq")
     message:
