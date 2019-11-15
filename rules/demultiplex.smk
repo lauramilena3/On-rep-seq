@@ -49,7 +49,7 @@ rule demultiplexing_2:
         then
             porechop -i {input} -o {output} --fp2ndrun > /dev/null 2>&1
             reads=$(grep -c "^@" {output})
-            if (( {{$reads}} < 2000 ))
+            if (( $reads < 2000 ))
             then
                 rm {output}
                 touch {output}
