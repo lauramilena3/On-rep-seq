@@ -35,7 +35,7 @@ rule merge_first_demultiplexing:
 
 rule demultiplexing_2:
     input:
-        OUTPUT_DIR + "/01_porechopped_data/{barcode}.fastq
+        OUTPUT_DIR + "/01_porechopped_data/{barcode}.fastq"
     output:
         OUTPUT_DIR + "/01_porechopped_data/{barcode}_demultiplexed.fastq"
     conda:
