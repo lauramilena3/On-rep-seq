@@ -9,7 +9,7 @@ rule demultiplexing_1:
         "envs/On-rep-seq.yaml"
     message:
         "Demultiplexing step 1"
-    threads: 2
+    threads: 4
     shell:
         """
         porechop -i {input}/{wildcards.sample}.fastq -b {params} -t {threads} --discard_unassigned --verbosity 2 > /dev/null 2>&1
