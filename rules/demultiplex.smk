@@ -2,7 +2,7 @@ rule demultiplexing_1:
     input:
         BASECALLED_DIR
     output:
-        temp((OUTPUT_DIR + "/01_porechopped_data/{{sample}}/{{barcode}}.fastq"))
+        temp(directory(OUTPUT_DIR + "/01_porechopped_data/{{sample}}/"))
     params:
         output_dir=OUTPUT_DIR + "/01_porechopped_data/{{sample}}"
     conda:
@@ -22,7 +22,7 @@ rule demultiplexing_1:
 
 rule merge_first_demultiplexing:
     input:
-        expand(OUTPUT_DIR + "/01_porechopped_data/{sample}/{{barcode}}.fastq", sample=SAMPLES)
+        expand(directory(OUTPUT_DIR + "/01_porechopped_data/{sample}, sample=SAMPLES))
     output:
         temp(OUTPUT_DIR + "/01_porechopped_data/{barcode}.fastq")
     message:
@@ -30,7 +30,7 @@ rule merge_first_demultiplexing:
     threads: 2
     shell:
         """
-        cat {input} > {output}
+        cat */{wildcard.barcode}.fastq > {output}
         """
 
 rule demultiplexing_2:
