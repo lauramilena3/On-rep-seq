@@ -12,7 +12,7 @@ rule demultiplexing_1:
     threads: 2
     shell:
         """
-        porechop -i {wildcard.sample}.fastq -b {params} -t {threads} --discard_unassigned --verbosity 2 > /dev/null 2>&1
+        porechop -i {wildcards.sample}.fastq -b {params} -t {threads} --discard_unassigned --verbosity 2 > /dev/null 2>&1
         line=$(echo {BARCODES})
         for barcode in $line
         do
