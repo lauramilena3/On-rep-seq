@@ -34,6 +34,7 @@ rule merge_first_demultiplexing:
     shell:
         """
         cat {params}/*/{wildcards.barcode}.fastq > {output}
+        echo "{params}/*/{wildcards.barcode}.fastq > {output}"
         """
 
 rule demultiplexing_2:
