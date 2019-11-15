@@ -42,6 +42,8 @@ rule demultiplexing_2:
         OUTPUT_DIR + "/01_porechopped_data/temporal_{barcode}.fastq"
     output:
         OUTPUT_DIR + "/01_porechopped_data/{barcode}_demultiplexed.fastq"
+    params:
+        OUTPUT_DIR + "/01_porechopped_data/rejected_{barcode}.fastq"
     conda:
         "envs/On-rep-seq.yaml"
     shell:
@@ -52,7 +54,7 @@ rule demultiplexing_2:
             reads=$(grep -c "^@" {output})
             if (( $reads < 2000 ))
             then
-                mv {output} rejected_{output}
+                mv {output} {params}
                 touch {output}
             fi
         else
