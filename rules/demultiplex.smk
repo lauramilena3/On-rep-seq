@@ -22,9 +22,9 @@ rule demultiplexing_1:
 
 rule merge_first_demultiplexing:
     input:
-        directory(expand(OUTPUT_DIR + "/01_porechopped_data/{sample}/", sample=SAMPLES))
+        (expand(OUTPUT_DIR + "/01_porechopped_data/{sample}/", sample=SAMPLES))
     output:
-        temp(OUTPUT_DIR + "/01_porechopped_data/{barcode}.fastq")
+        temp(OUTPUT_DIR + "/01_porechopped_data/temporal_{barcode}.fastq")
     message:
         "Merging barcodes"
     threads: 2
@@ -35,7 +35,7 @@ rule merge_first_demultiplexing:
 
 rule demultiplexing_2:
     input:
-        OUTPUT_DIR + "/01_porechopped_data/{barcode}.fastq"
+        OUTPUT_DIR + "/01_porechopped_data/temporal_{barcode}.fastq"
     output:
         OUTPUT_DIR + "/01_porechopped_data/{barcode}_demultiplexed.fastq"
     conda:
