@@ -30,7 +30,7 @@ rule merge_first_demultiplexing:
     threads: 2
     shell:
         """
-        cat */{wildcard.barcode}.fastq > {output}
+        cat */{wildcards.barcode}.fastq > {output}
         """
 
 rule demultiplexing_2:
