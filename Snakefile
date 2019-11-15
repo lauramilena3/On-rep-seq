@@ -21,7 +21,6 @@ SAMPLES,=glob_wildcards(INPUT_DIR + "/{sample}" + ".fastq")
 with open("scripts/logo.txt") as f:
     print(f.read())
 
-print(SAMPLES)
 #======================================================
 # Rules
 #======================================================
