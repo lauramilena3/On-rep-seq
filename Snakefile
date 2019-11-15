@@ -16,7 +16,7 @@ BARCODES = config["barcodes"].split()
 INPUT_DIR=config["basecalled_dir"].rstrip("/")
 OUTPUT_DIR=config["results_dir"].rstrip("/")
 WORKFLOW_DATA=OUTPUT_DIR + "/ON-rep-seq_DATA"
-SAMPLES,=glob_wildcards(RAW_DATA_DIR + "/{sample}" + ".fastq")
+SAMPLES,=glob_wildcards(INPUT_DIR + "/{sample}" + ".fastq")
 
 print(SAMPLES)
 #======================================================
