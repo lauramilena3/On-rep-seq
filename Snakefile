@@ -19,8 +19,8 @@ WORKFLOW_DATA=OUTPUT_DIR + "/ON-rep-seq_DATA"
 SAMPLES,=glob_wildcards(INPUT_DIR + "/{sample}" + ".fastq")
 
 with open("scripts.logo.txt") as f:
-    print f.read()
-    
+    print(f.read())
+
 print(SAMPLES)
 #======================================================
 # Rules
