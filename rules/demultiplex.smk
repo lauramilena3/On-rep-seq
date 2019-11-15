@@ -52,7 +52,7 @@ rule demultiplexing_2:
             reads=$(grep -c "^@" {output})
             if (( $reads < 2000 ))
             then
-                rm {output}
+                mv {output} rejected_{output}
                 touch {output}
             fi
         else
