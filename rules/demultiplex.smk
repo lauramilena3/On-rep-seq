@@ -48,7 +48,7 @@ rule demultiplexing_2:
         """
         if [ -s {input} ]
         then
-            porechop -i {input} -o {output} --fp2ndrun > /dev/null 2>&1
+            porechop -i {input} -o {output} --fp2ndrun --verbosity 0
             reads=$(grep -c "^@" {output})
             if (( $reads < 2000 ))
             then
