@@ -2,44 +2,40 @@ rule demultiplexing_1:
     input:
         BASECALLED_DIR
     output:
-        temp(expand(OUTPUT_DIR + "/01_porechopped_data/{barcode}.fastq", barcode=BARCODES))
+        temp(expand(OUTPUT_DIR + "/01_porechopped_data/{{sample}}/{barcode}.fastq", barcode=BARCODES))
     params:
-        output_dir=OUTPUT_DIR + "/01_porechopped_data"
+        output_dir=OUTPUT_DIR + "/01_porechopped_data/{{sample}}"
     conda:
         "envs/On-rep-seq.yaml"
     message:
         "Demultiplexing step 1"
-    threads: 16
+    threads: 2
     shell:
         """
-        head -n 25 scripts/logo.txt
-        counter=1
-        n=$(ls -l {input}/*fastq | wc -l )
-        rm -rf {params.output_dir}/*fastq
-        for filename in {input}/*fastq
-        do
-            echo "Processing sample $counter/$n"
-            run=$(basename -- $filename)
-            echo $run
-            porechop -i $filename -b {params.output_dir}/${{run}} -t {threads} --discard_unassigned --verbosity 2 > /dev/null 2>&1
-            for bar in {params.output_dir}/${{run}}/*.fastq
-            do
-                f=$(basename -- $bar)
-                cat $bar >> {params.output_dir}/$f
-            done
-            rm -rf {params.output_dir}/${{run}}
-            counter=$((counter+1))
-        done
+        porechop -i {wildcard.sample}.fastq -b {params} -t {threads} --discard_unassigned --verbosity 2 > /dev/null 2>&1
         line=$(echo {BARCODES})
         for barcode in $line
         do
-            touch {params.output_dir}/$barcode.fastq
+            touch {params}/$barcode.fastq
         done
+        """
+
+rule merge_first_demultiplexing:
+    input:
+        expand(OUTPUT_DIR + "/01_porechopped_data/{sample}/{{barcode}}.fastq", sample=SAMPLES)
+    output:
+        temp(OUTPUT_DIR + "/01_porechopped_data/{barcode}.fastq")
+    message:
+        "Merging barcodes"
+    threads: 2
+    shell:
+        """
+        cat {input} > {output}
         """
 
 rule demultiplexing_2:
     input:
-        OUTPUT_DIR + "/01_porechopped_data/{barcode}.fastq"
+        OUTPUT_DIR + "/01_porechopped_data/{barcode}.fastq
     output:
         OUTPUT_DIR + "/01_porechopped_data/{barcode}_demultiplexed.fastq"
     conda:
