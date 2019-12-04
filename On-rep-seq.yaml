@@ -6,3 +6,4 @@ dependencies:
   - snakemake-minimal =5.7.4
   - matplotlib =3.0.3
   - kraken2 =2.0.7
+  - libiconv =1.15
