@@ -1,6 +1,7 @@
 channels:
   - au-eoed
   - conda-forge
+  - bioconda
 dependencies:
   - gnu-parallel =20161122
   - r-optparse =1.6.0
@@ -15,5 +16,6 @@ dependencies:
   - r-latticeExtra =0.6
   - r-reshape =0.8.8
   - r-matrixStats =0.54.0
-  - r-gdata =2.18.0 
+  - r-gdata =2.18.0
   - perl =5.26.2
+  - coreutils =8.25
