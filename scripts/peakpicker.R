@@ -68,7 +68,12 @@ findPeaks <- function(x,npt = 2*round(sqrt(dim(x)[1])/2)*2 + 1){
     # get start and endpoint of each interval 
     brkpts <- which(idw[-1] - idw[-length(idw)]>1)
     intervals <- data.frame(stspts = idw[c(1,brkpts+1)], endpts = idw[c(brkpts,length(idw))])
+    intervals[,1]<-intervals[,1]-0.01 ## Make sure it works in case of peaks of length 0 and 1, like: 160 160, or 168 169
+    intervals[,2]<-intervals[,2]+0.01
+    #print("====interv==="); print(intervals)
+    #print("====rs===");print(i); print(rowSums(sign(intervals - i)))
     int <- intervals[rowSums(sign(intervals - i))==0,]
+    #print("===int===");print(int);print("=======")
     idnw <- logical(length = dim(x)[1])
     idnw[int$stspts:int$endpts] <- T
     # check how many other peaks this one overlaps with 
