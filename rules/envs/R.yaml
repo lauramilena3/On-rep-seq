@@ -4,6 +4,9 @@ channels:
   - bioconda
 dependencies:
   - gnu-parallel =20161122
+  - jupyterlab =1.2.4
+  - jupyter_core =4.6.1
+  - jupyter_client =5.3.3
   - r-optparse =1.6.0
   - r-ggplot2 =3.1.0
   - r-signal =0.7
@@ -19,3 +22,30 @@ dependencies:
   - r-gdata =2.18.0
   - perl =5.26.2
   - coreutils =8.25
+
+
+##
+#channels:
+#  - au-eoed
+#  - conda-forge
+#  - bioconda
+#dependencies:
+#  - gnu-parallel
+#  - jupyterlab
+#  - jupyter_core
+#  - jupyter_client
+#  - r-optparse
+#  - r-ggplot2
+#  - r-signal
+#  - r-irkernel
+#  - r-gplots
+#  - r-cluster
+#  - r-heatmap3
+#  - r-hash
+#  - r-fastmatch
+#  - r-latticeExtra
+#  - r-reshape
+#  - r-matrixStats
+#  - r-gdata
+#  - perl
+#  - coreutils
