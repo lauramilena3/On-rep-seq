@@ -27,15 +27,16 @@ SEDCMD="$(parallel --halt never -k --colsep '=' \
    ::: "$@" | paste -sd ';')"
 
 set -x
-jupyter nbconvert --to notebook \
+jupyter nbconvert --to="$OUTTYPE" \
     --log-level="$JUPLOGLVL" \
     --execute <(set -eux; < "$IPYNB" sed "$SEDCMD") \
     --output "$IPYNBOUT" \
     --output-dir "$(dirname "$IPYNBOUT")" \
     --ExecutePreprocessor.timeout="$TIMEOUT" \
     --ExecutePreprocessor.interrupt_on_timeout=True \
-    --to="$OUTTYPE" \
-    --allow-errors \
+	--allow-errors
+#    --to="$OUTTYPE" \
+    #--allow-errors \
 
 #    --save-on-error \## Not yet implemented in jupyter/nbconvert
 
